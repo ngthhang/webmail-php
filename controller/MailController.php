@@ -1,7 +1,7 @@
 <?php
     class MailControler{
         public function index(){
-            
+            // test git index
         }
 
         public function view()
