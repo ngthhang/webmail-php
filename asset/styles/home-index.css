@@ -1,0 +1,69 @@
+/* START AVATAR ICON MENU */
+.avatar{
+    max-width: 50px;
+    max-height: 50px;
+}
+.icon{
+    max-width: 20px;
+    max-height: 20px;
+}
+.user-mail-text{
+    color: #848484;
+}
+.badge{
+    border-radius: 20px;
+    padding: 2px 10px;
+}
+/* FINISH AVATAR ICON MENU */
+
+
+/* START TABLE LIST MAIL */
+.table-home-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table-body{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.table-body:hover{
+    background-color: #E0E0E0;
+}
+
+/* FINISH TABLE LIST MAIL */
+
+
+/* START MAIL ROW CUSTOM */
+.bg-date{
+    background-color: #E3F1FC;
+}
+
+.mail-user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.mail-avatar{
+    max-width: 40px;
+    max-height: 40px;
+}
+.mail-content-text{
+    color: #7F7F7F;
+}
+.mail{
+    background-color: #f4f7f7;
+}
+.mail:hover{
+  background-color: #D5ECF7;
+}
+.mail-unread{
+    background-color: #ffffff;
+}
+/* FINISH MAIL ROW CUSTOM */

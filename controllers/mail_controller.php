@@ -1,5 +1,5 @@
 <?php
-    class MailControler{
+    class MailController{
         public function index(){
             // test git index
         }
