@@ -1,0 +1,34 @@
+
+.login-form{
+    display: flex;
+    max-width: 600px;
+    margin: auto;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.label-text{
+    font-size: 18px;
+}
+
+.login-input{
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    padding: 20px 10px;
+}
+
+.login-input:hover{
+    background-color:#ffffff;
+}
+
+.button{
+    border-radius: 10px;
+    background-color: #33A1FD;
+    border: 0 ;
+    padding: 7px;
+}
+
+.bg-main{
+    background-color: #33A1FD;
+}

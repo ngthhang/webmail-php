@@ -1,0 +1,1 @@
+<img src="asset/images/404.png" alt="404 NOT FOUND" style="width: 100px;height:100px">
