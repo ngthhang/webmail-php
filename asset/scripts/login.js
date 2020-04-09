@@ -1,4 +1,4 @@
-// Handle input
+// Handle input login
 function isInputValid(){
     let email = $('#email').val();
     let password = $('#passwork').val();
