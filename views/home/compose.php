@@ -26,7 +26,6 @@ require_once('config/config.php');
 </head>
 
 <body>
-    <?= $content ?>
     <div class='container-fluid p-0 h-100'>
         <div class='row h-100 w-100 m-0'>
             <!-- START MENU SIDE BAR -->

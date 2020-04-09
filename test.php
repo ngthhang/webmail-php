@@ -1,3 +1,3 @@
 <?php
-    require_once('./views/login/index.php');
+    require_once('./views/home/compose.php');
 ?>
