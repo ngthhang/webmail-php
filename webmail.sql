@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 09, 2020 lúc 05:15 PM
+-- Thời gian đã tạo: Th4 10, 2020 lúc 02:18 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.3
 
@@ -33,6 +33,14 @@ CREATE TABLE `block_user` (
   `BLOCK_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `block_user`
+--
+
+INSERT INTO `block_user` (`USER_ID`, `BLOCK_ID`) VALUES
+(1, 15),
+(2, 9);
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +52,23 @@ CREATE TABLE `conversation` (
   `SUBJECT` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `conversation`
+--
+
+INSERT INTO `conversation` (`ID`, `SUBJECT`) VALUES
+(1, 'Gửi bài tập ôn môn Toán'),
+(2, 'Khảo sát ý kiến'),
+(3, 'Cuộc thi \"Tìm hiểu biển đảo Việt Nam\"'),
+(4, 'Hướng dẫn học trực tuyến lý thuyết môn toán'),
+(5, 'Thông báo V/v ôn tập trực tuyến môn Tư tưởng HCM'),
+(6, 'Cập nhật lịch học online Lý thuyết PPT'),
+(7, 'Meeting online for online learning'),
+(8, 'Cuộc thi học thuật online'),
+(9, 'Cuộc thi Trải nghiệm văn hóa Trung Hoa'),
+(10, 'Thông báo V/v bát buộc tham gia khảo sát'),
+(11, 'Gửi bài kiểm duyệt');
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +78,13 @@ CREATE TABLE `conversation` (
 CREATE TABLE `draft` (
   `ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `draft`
+--
+
+INSERT INTO `draft` (`ID`) VALUES
+(31);
 
 -- --------------------------------------------------------
 
@@ -68,8 +100,46 @@ CREATE TABLE `mail` (
   `SENT_TIME` datetime DEFAULT NULL,
   `CONTENT` varchar(4000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ENCLOSED_FILE` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `SEEN` bit(1) NOT NULL DEFAULT b'0'
+  `SEEN` bit(1) NOT NULL DEFAULT b'0',
+  `STAR` bit(1) DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `mail`
+--
+
+INSERT INTO `mail` (`ID`, `CONVERSATION_ID`, `USER_ID_SEND`, `USER_ID_RECEIVE`, `SENT_TIME`, `CONTENT`, `ENCLOSED_FILE`, `SEEN`, `STAR`) VALUES
+(1, 3, 2, 1, '2020-04-01 16:22:00', 'Your score has been released for CUỘC THI \"TÌM HIỂU VỀ BIỂN ĐẢO VIỆT NAM\" KHOA QTKD.', NULL, b'0', b'0'),
+(2, 3, 2, 8, '2020-04-01 16:22:00', 'Your score has been released for CUỘC THI \"TÌM HIỂU VỀ BIỂN ĐẢO VIỆT NAM\" KHOA QTKD.', NULL, b'0', b'0'),
+(3, 3, 2, 3, '2020-04-01 16:22:00', 'Your score has been released for CUỘC THI \"TÌM HIỂU VỀ BIỂN ĐẢO VIỆT NAM\" KHOA QTKD.', NULL, b'0', b'0'),
+(4, 3, 2, 4, '2020-04-01 16:22:00', 'Your score has been released for CUỘC THI \"TÌM HIỂU VỀ BIỂN ĐẢO VIỆT NAM\" KHOA QTKD.', NULL, b'0', b'0'),
+(5, 3, 2, 5, '2020-04-01 16:22:00', 'Your score has been released for CUỘC THI \"TÌM HIỂU VỀ BIỂN ĐẢO VIỆT NAM\" KHOA QTKD.', NULL, b'0', b'0'),
+(6, 1, 1, 2, '2020-04-04 09:36:04', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\nVivamus imperdiet elit at vulputate ornare.\r\nMorbi iaculis sem at arcu consequat egestas.\r\nAliquam ac leo id neque aliquet congue.', 'asset/uploads/HDGiaiBTToan.pdf', b'1', b'0'),
+(7, 1, 1, 8, '2020-04-03 16:22:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\nVivamus imperdiet elit at vulputate ornare.\r\nMorbi iaculis sem at arcu consequat egestas.\r\nAliquam ac leo id neque aliquet congue.', 'asset/uploads/HDGiaiBTToan.pdf', b'0', b'0'),
+(8, 8, 15, 1, '2020-04-06 08:36:30', 'Lorem Ipsum là gì?\r\nLorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500', NULL, b'0', b'0'),
+(9, 8, 3, 2, '2020-04-06 08:36:30', 'Lorem Ipsum là gì?\r\nLorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500', NULL, b'0', b'0'),
+(10, 8, 3, 8, '2020-04-06 08:36:30', 'Lorem Ipsum là gì?\r\nLorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500', NULL, b'0', b'0'),
+(11, 6, 4, 2, '2020-04-02 08:42:37', 'Làm thế nào để có nó?\r\nCó rất nhiều biến thể của Lorem Ipsum mà bạn có thể tìm thấy, nhưng đa số được biến đổi bằng cách thêm các yếu tố hài hước, các từ ngẫu nhiên có khi không có vẻ gì là có ý nghĩa. Nếu bạn định sử dụng một đoạn Lorem Ipsum, bạn nên kiểm tra kĩ để chắn chắn là không có gì nhạy cảm được giấu ở giữa đoạn văn bản.', NULL, b'1', b'0'),
+(12, 6, 4, 1, '2020-04-02 08:42:37', 'Làm thế nào để có nó?\r\nCó rất nhiều biến thể của Lorem Ipsum mà bạn có thể tìm thấy, nhưng đa số được biến đổi bằng cách thêm các yếu tố hài hước, các từ ngẫu nhiên có khi không có vẻ gì là có ý nghĩa. Nếu bạn định sử dụng một đoạn Lorem Ipsum, bạn nên kiểm tra kĩ để chắn chắn là không có gì nhạy cảm được giấu ở giữa đoạn văn bản.', NULL, b'1', b'0'),
+(13, 6, 4, 8, '2020-04-02 08:42:37', 'Làm thế nào để có nó?\r\nCó rất nhiều biến thể của Lorem Ipsum mà bạn có thể tìm thấy, nhưng đa số được biến đổi bằng cách thêm các yếu tố hài hước, các từ ngẫu nhiên có khi không có vẻ gì là có ý nghĩa. Nếu bạn định sử dụng một đoạn Lorem Ipsum, bạn nên kiểm tra kĩ để chắn chắn là không có gì nhạy cảm được giấu ở giữa đoạn văn bản.', NULL, b'0', b'0'),
+(14, 4, 9, 2, '2020-04-01 10:39:59', 'Trái với quan điểm chung của số đông, Lorem Ipsum không phải chỉ là một đoạn văn bản ngẫu nhiên. Người ta tìm thấy nguồn gốc của nó từ những tác phẩm văn học la-tinh cổ điển xuất hiện từ năm 45 trước Công Nguyên, nghĩa là nó đã có khoảng hơn 2000 tuổi.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit.\r\nPhasellus ut mi eu nibh volutpat molestie sed ut orci.\r\nNam fringilla dui a mi tempor suscipit.\r\nInteger non odio vitae est ornare fringilla a quis ipsum.\r\nCurabitur quis ipsum tristique, tincidunt est vel, blandit leo.\r\nCras sit amet nunc eu nibh iaculis ultrices sed eu urna.\r\nVivamus id neque quis dui posuere aliquet.\r\nUt quis arcu eget turpis placerat pulvinar sit amet quis arcu.\r\nNam imperdiet orci eu turpis imperdiet, id accumsan leo finibus.\r\nAenean a erat posuere, volutpat augue eget, porta urna.', NULL, b'0', b'0'),
+(15, 4, 9, 1, '2020-04-01 10:39:59', 'Trái với quan điểm chung của số đông, Lorem Ipsum không phải chỉ là một đoạn văn bản ngẫu nhiên. Người ta tìm thấy nguồn gốc của nó từ những tác phẩm văn học la-tinh cổ điển xuất hiện từ năm 45 trước Công Nguyên, nghĩa là nó đã có khoảng hơn 2000 tuổi.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit.\r\nPhasellus ut mi eu nibh volutpat molestie sed ut orci.\r\nNam fringilla dui a mi tempor suscipit.\r\nInteger non odio vitae est ornare fringilla a quis ipsum.\r\nCurabitur quis ipsum tristique, tincidunt est vel, blandit leo.\r\nCras sit amet nunc eu nibh iaculis ultrices sed eu urna.\r\nVivamus id neque quis dui posuere aliquet.\r\nUt quis arcu eget turpis placerat pulvinar sit amet quis arcu.\r\nNam imperdiet orci eu turpis imperdiet, id accumsan leo finibus.\r\nAenean a erat posuere, volutpat augue eget, porta urna.', NULL, b'0', b'0'),
+(16, 2, 7, 2, '2020-03-27 10:42:11', '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"Không có ai muốn khổ đau cho chính mình, muốn tìm kiếm về nó và muốn có nó, bởi vì nó là sự đau khổ...\"', NULL, b'0', b'0'),
+(17, 2, 7, 1, '2020-03-27 10:42:11', '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"Không có ai muốn khổ đau cho chính mình, muốn tìm kiếm về nó và muốn có nó, bởi vì nó là sự đau khổ...\"', NULL, b'0', b'0'),
+(18, 2, 7, 2, '2020-04-01 10:39:59', '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"Không có ai muốn khổ đau cho chính mình, muốn tìm kiếm về nó và muốn có nó, bởi vì nó là sự đau khổ...\"', NULL, b'1', b'0'),
+(19, 5, 10, 1, '2020-03-25 17:14:31', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan lacinia lacinia. Proin egestas purus non nulla auctor, nec rutrum magna dapibus. Donec tempus odio suscipit ex egestas vestibulum. Cras imperdiet ligula sed nisl interdum placerat. Ut interdum, magna non bibendum porttitor, diam massa ornare mauris, ut suscipit arcu augue eu mauris. Vivamus congue accumsan ante nec finibus. Morbi pharetra urna velit, eget posuere eros posuere eget. Etiam ultricies mauris ac maximus volutpat. Ut consequat ligula nibh, quis aliquam orci volutpat ac. Suspendisse non ante nibh.\r\n\r\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc suscipit, ante non bibendum molestie, lorem urna vehicula ante, quis porttitor lacus turpis ut neque. Curabitur iaculis, mauris vel imperdiet lobortis, lacus mauris posuere nisi, ac elementum odio justo quis dolor. Suspendisse elit odio, finibus feugiat bibendum a, dictum nec ex. Nunc vitae bibendum nunc. Nullam viverra sem ut purus pellentesque, nec vulputate purus interdum. Sed tristique hendrerit nibh, ut aliquam massa maximus nec. Morbi laoreet porta felis. Duis auctor orci tortor, sit amet commodo tortor vulputate volutpat.', NULL, b'0', b'0'),
+(20, 5, 10, 2, '2020-04-02 08:42:37', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan lacinia lacinia. Proin egestas purus non nulla auctor, nec rutrum magna dapibus. Donec tempus odio suscipit ex egestas vestibulum. Cras imperdiet ligula sed nisl interdum placerat. Ut interdum, magna non bibendum porttitor, diam massa ornare mauris, ut suscipit arcu augue eu mauris. Vivamus congue accumsan ante nec finibus. Morbi pharetra urna velit, eget posuere eros posuere eget. Etiam ultricies mauris ac maximus volutpat. Ut consequat ligula nibh, quis aliquam orci volutpat ac. Suspendisse non ante nibh.\r\n\r\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc suscipit, ante non bibendum molestie, lorem urna vehicula ante, quis porttitor lacus turpis ut neque. Curabitur iaculis, mauris vel imperdiet lobortis, lacus mauris posuere nisi, ac elementum odio justo quis dolor. Suspendisse elit odio, finibus feugiat bibendum a, dictum nec ex. Nunc vitae bibendum nunc. Nullam viverra sem ut purus pellentesque, nec vulputate purus interdum. Sed tristique hendrerit nibh, ut aliquam massa maximus nec. Morbi laoreet porta felis. Duis auctor orci tortor, sit amet commodo tortor vulputate volutpat.', NULL, b'0', b'0'),
+(21, 6, 12, 1, '2020-04-01 18:25:34', 'Donec faucibus fermentum ex at eleifend. Fusce nisl massa, molestie at convallis sollicitudin, efficitur at nulla. Vivamus eu nisi nec dui mollis porta nec ac leo. Praesent imperdiet diam at nisi gravida, ac elementum odio semper. Ut ac mauris sed est hendrerit aliquet a iaculis erat. Proin commodo sem luctus, ullamcorper libero et, scelerisque lacus. Praesent neque magna, pulvinar blandit ornare quis, dapibus sed enim.\r\n\r\nPhasellus non dictum nisi. Nam nibh leo, maximus vel sagittis ac, tempor non libero. Sed sagittis, elit vitae laoreet elementum, nisi velit rutrum velit, vitae rhoncus diam ligula in nibh. Praesent ornare sapien odio, nec fringilla massa facilisis ac. Donec dapibus iaculis risus. Suspendisse iaculis, est eu vehicula pellentesque, nibh augue aliquam justo, sed venenatis nisi metus sit amet nisl.', NULL, b'1', b'0'),
+(22, 6, 12, 2, '2020-04-02 08:42:37', 'Donec faucibus fermentum ex at eleifend. Fusce nisl massa, molestie at convallis sollicitudin, efficitur at nulla. Vivamus eu nisi nec dui mollis porta nec ac leo. Praesent imperdiet diam at nisi gravida, ac elementum odio semper. Ut ac mauris sed est hendrerit aliquet a iaculis erat. Proin commodo sem luctus, ullamcorper libero et, scelerisque lacus. Praesent neque magna, pulvinar blandit ornare quis, dapibus sed enim.\r\n\r\nPhasellus non dictum nisi. Nam nibh leo, maximus vel sagittis ac, tempor non libero. Sed sagittis, elit vitae laoreet elementum, nisi velit rutrum velit, vitae rhoncus diam ligula in nibh. Praesent ornare sapien odio, nec fringilla massa facilisis ac. Donec dapibus iaculis risus. Suspendisse iaculis, est eu vehicula pellentesque, nibh augue aliquam justo, sed venenatis nisi metus sit amet nisl.', NULL, b'1', b'0'),
+(23, 6, 12, 8, '2020-04-02 08:42:37', 'Donec faucibus fermentum ex at eleifend. Fusce nisl massa, molestie at convallis sollicitudin, efficitur at nulla. Vivamus eu nisi nec dui mollis porta nec ac leo. Praesent imperdiet diam at nisi gravida, ac elementum odio semper. Ut ac mauris sed est hendrerit aliquet a iaculis erat. Proin commodo sem luctus, ullamcorper libero et, scelerisque lacus. Praesent neque magna, pulvinar blandit ornare quis, dapibus sed enim.\r\n\r\nPhasellus non dictum nisi. Nam nibh leo, maximus vel sagittis ac, tempor non libero. Sed sagittis, elit vitae laoreet elementum, nisi velit rutrum velit, vitae rhoncus diam ligula in nibh. Praesent ornare sapien odio, nec fringilla massa facilisis ac. Donec dapibus iaculis risus. Suspendisse iaculis, est eu vehicula pellentesque, nibh augue aliquam justo, sed venenatis nisi metus sit amet nisl.', NULL, b'1', b'0'),
+(24, 7, 11, 1, '2020-03-31 18:28:37', 'Donec faucibus fermentum ex at eleifend. Fusce nisl massa, molestie at convallis sollicitudin, efficitur at nulla. Vivamus eu nisi nec dui mollis porta nec ac leo. Praesent imperdiet diam at nisi gravida, ac elementum odio semper. Ut ac mauris sed est hendrerit aliquet a iaculis erat. Proin commodo sem luctus, ullamcorper libero et, scelerisque lacus. Praesent neque magna, pulvinar blandit ornare quis, dapibus sed enim.\r\n\r\nPhasellus non dictum nisi. Nam nibh leo, maximus vel sagittis ac, tempor non libero. Sed sagittis, elit vitae laoreet elementum, nisi velit rutrum velit, vitae rhoncus diam ligula in nibh. Praesent ornare sapien odio, nec fringilla massa facilisis ac. Donec dapibus iaculis risus. Suspendisse iaculis, est eu vehicula pellentesque, nibh augue aliquam justo, sed venenatis nisi metus sit amet nisl.', NULL, b'1', b'0'),
+(25, 7, 11, 2, '2020-03-31 18:28:37', 'Donec faucibus fermentum ex at eleifend. Fusce nisl massa, molestie at convallis sollicitudin, efficitur at nulla. Vivamus eu nisi nec dui mollis porta nec ac leo. Praesent imperdiet diam at nisi gravida, ac elementum odio semper. Ut ac mauris sed est hendrerit aliquet a iaculis erat. Proin commodo sem luctus, ullamcorper libero et, scelerisque lacus. Praesent neque magna, pulvinar blandit ornare quis, dapibus sed enim.\r\n\r\nPhasellus non dictum nisi. Nam nibh leo, maximus vel sagittis ac, tempor non libero. Sed sagittis, elit vitae laoreet elementum, nisi velit rutrum velit, vitae rhoncus diam ligula in nibh. Praesent ornare sapien odio, nec fringilla massa facilisis ac. Donec dapibus iaculis risus. Suspendisse iaculis, est eu vehicula pellentesque, nibh augue aliquam justo, sed venenatis nisi metus sit amet nisl.', NULL, b'1', b'0'),
+(26, 7, 11, 8, '2020-04-02 08:42:37', 'Donec faucibus fermentum ex at eleifend. Fusce nisl massa, molestie at convallis sollicitudin, efficitur at nulla. Vivamus eu nisi nec dui mollis porta nec ac leo. Praesent imperdiet diam at nisi gravida, ac elementum odio semper. Ut ac mauris sed est hendrerit aliquet a iaculis erat. Proin commodo sem luctus, ullamcorper libero et, scelerisque lacus. Praesent neque magna, pulvinar blandit ornare quis, dapibus sed enim.\r\n\r\nPhasellus non dictum nisi. Nam nibh leo, maximus vel sagittis ac, tempor non libero. Sed sagittis, elit vitae laoreet elementum, nisi velit rutrum velit, vitae rhoncus diam ligula in nibh. Praesent ornare sapien odio, nec fringilla massa facilisis ac. Donec dapibus iaculis risus. Suspendisse iaculis, est eu vehicula pellentesque, nibh augue aliquam justo, sed venenatis nisi metus sit amet nisl.', NULL, b'1', b'0'),
+(27, 9, 13, 1, '2020-04-08 18:33:32', 'Lorem Ipsum\r\n\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"Không có ai muốn khổ đau cho chính mình, muốn tìm kiếm về nó và muốn có nó, bởi vì nó là sự đau khổ...\"\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan lacinia lacinia. Proin egestas purus non nulla auctor, nec rutrum magna dapibus. Donec tempus odio suscipit ex egestas vestibulum. Cras imperdiet ligula sed nisl interdum placerat. Ut interdum, magna non bibendum porttitor, diam massa ornare mauris, ut suscipit arcu augue eu mauris. Vivamus congue accumsan ante nec finibus. Morbi pharetra urna velit, eget posuere eros posuere eget. Etiam ultricies mauris ac maximus volutpat. Ut consequat ligula nibh, quis aliquam orci volutpat ac. Suspendisse non ante nibh.\r\n\r\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc suscipit, ante non bibendum molestie, lorem urna vehicula ante, quis porttitor lacus turpis ut neque. Curabitur iaculis, mauris vel imperdiet lobortis, lacus mauris posuere nisi, ac elementum odio justo quis dolor. Suspendisse elit odio, finibus feugiat bibendum a, dictum nec ex. Nunc vitae bibendum nunc. Nullam viverra sem ut purus pellentesque, nec vulputate purus interdum. Sed tristique hendrerit nibh, ut aliquam massa maximus nec. Morbi laoreet porta felis. Duis auctor orci tortor, sit amet commodo tortor vulputate volutpat.', NULL, b'0', b'0'),
+(28, 9, 13, 2, '2020-04-08 18:33:32', 'Lorem Ipsum\r\n\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"Không có ai muốn khổ đau cho chính mình, muốn tìm kiếm về nó và muốn có nó, bởi vì nó là sự đau khổ...\"\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan lacinia lacinia. Proin egestas purus non nulla auctor, nec rutrum magna dapibus. Donec tempus odio suscipit ex egestas vestibulum. Cras imperdiet ligula sed nisl interdum placerat. Ut interdum, magna non bibendum porttitor, diam massa ornare mauris, ut suscipit arcu augue eu mauris. Vivamus congue accumsan ante nec finibus. Morbi pharetra urna velit, eget posuere eros posuere eget. Etiam ultricies mauris ac maximus volutpat. Ut consequat ligula nibh, quis aliquam orci volutpat ac. Suspendisse non ante nibh.\r\n\r\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc suscipit, ante non bibendum molestie, lorem urna vehicula ante, quis porttitor lacus turpis ut neque. Curabitur iaculis, mauris vel imperdiet lobortis, lacus mauris posuere nisi, ac elementum odio justo quis dolor. Suspendisse elit odio, finibus feugiat bibendum a, dictum nec ex. Nunc vitae bibendum nunc. Nullam viverra sem ut purus pellentesque, nec vulputate purus interdum. Sed tristique hendrerit nibh, ut aliquam massa maximus nec. Morbi laoreet porta felis. Duis auctor orci tortor, sit amet commodo tortor vulputate volutpat.', NULL, b'0', b'0'),
+(29, 10, 4, 1, '2020-04-01 16:22:00', 'Lorem Ipsum\r\n\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"Không có ai muốn khổ đau cho chính mình, muốn tìm kiếm về nó và muốn có nó, bởi vì nó là sự đau khổ...\"\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan lacinia lacinia. Proin egestas purus non nulla auctor, nec rutrum magna dapibus. Donec tempus odio suscipit ex egestas vestibulum. Cras imperdiet ligula sed nisl interdum placerat. Ut interdum, magna non bibendum porttitor, diam massa ornare mauris, ut suscipit arcu augue eu mauris. Vivamus congue accumsan ante nec finibus. Morbi pharetra urna velit, eget posuere eros posuere eget. Etiam ultricies mauris ac maximus volutpat. Ut consequat ligula nibh, quis aliquam orci volutpat ac. Suspendisse non ante nibh.\r\n\r\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc suscipit, ante non bibendum molestie, lorem urna vehicula ante, quis porttitor lacus turpis ut neque. Curabitur iaculis, mauris vel imperdiet lobortis, lacus mauris posuere nisi, ac elementum odio justo quis dolor. Suspendisse elit odio, finibus feugiat bibendum a, dictum nec ex. Nunc vitae bibendum nunc. Nullam viverra sem ut purus pellentesque, nec vulputate purus interdum. Sed tristique hendrerit nibh, ut aliquam massa maximus nec. Morbi laoreet porta felis. Duis auctor orci tortor, sit amet commodo tortor vulputate volutpat.', NULL, b'0', b'0'),
+(30, 10, 7, 2, '2020-04-01 18:36:14', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam accumsan lacinia lacinia. Proin egestas purus non nulla auctor, nec rutrum magna dapibus. Donec tempus odio suscipit ex egestas vestibulum. Cras imperdiet ligula sed nisl interdum placerat. Ut interdum, magna non bibendum porttitor, diam massa ornare mauris, ut suscipit arcu augue eu mauris. Vivamus congue accumsan ante nec finibus. Morbi pharetra urna velit, eget posuere eros posuere eget. Etiam ultricies mauris ac maximus volutpat. Ut consequat ligula nibh, quis aliquam orci volutpat ac. Suspendisse non ante nibh.\r\n\r\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc suscipit, ante non bibendum molestie, lorem urna vehicula ante, quis porttitor lacus turpis ut neque. Curabitur iaculis, mauris vel imperdiet lobortis, lacus mauris posuere nisi, ac elementum odio justo quis dolor. Suspendisse elit odio, finibus feugiat bibendum a, dictum nec ex. Nunc vitae bibendum nunc. Nullam viverra sem ut purus pellentesque, nec vulputate purus interdum. Sed tristique hendrerit nibh, ut aliquam massa maximus nec. Morbi laoreet porta felis. Duis auctor orci tortor, sit amet commodo tortor vulputate volutpat.\r\n\r\nVivamus fermentum auctor blandit. Donec tristique aliquet nisl. Nullam quis vehicula nunc, sed porttitor ligula. Nam non ornare est. Nulla facilisi. Praesent posuere quis lacus ut rhoncus. Maecenas a consequat metus. Suspendisse at auctor mauris, et accumsan sapien. Nullam id diam consequat nulla tempus laoreet. Phasellus convallis mi augue, faucibus varius lectus imperdiet sit amet. Ut eget blandit lectus. Pellentesque eleifend orci eget auctor commodo. Quisque nec nulla sed sapien accumsan tempor non a magna. Praesent ultricies, enim ac porta sodales, velit risus luctus erat, in volutpat quam lectus eu massa. Quisque et maximus ex. Aliquam bibendum nisl ac nisi euismod, at hendrerit neque scelerisque.\r\n\r\nDonec faucibus fermentum ex at eleifend. Fusce nisl massa, molestie at convallis sollicitudin, efficitur at nulla. Vivamus eu nisi nec dui mollis porta nec ac leo. Praesent imperdiet diam at nisi gravida, ac elementum odio semper. Ut ac mauris sed est hendrerit aliquet a iaculis erat. Proin commodo sem luctus, ullamcorper libero et, scelerisque lacus. Praesent neque magna, pulvinar blandit ornare quis, dapibus sed enim.\r\n\r\nPhasellus non dictum nisi. Nam nibh leo, maximus vel sagittis ac, tempor non libero. Sed sagittis, elit vitae laoreet elementum, nisi velit rutrum velit, vitae rhoncus diam ligula in nibh. Praesent ornare sapien odio, nec fringilla massa facilisis ac. Donec dapibus iaculis risus. Suspendisse iaculis, est eu vehicula pellentesque, nibh augue aliquam justo, sed venenatis nisi metus sit amet nisl. Ut at leo libero. Cras gravida malesuada felis. Ut consequat iaculis mauris vel mattis. Ut pharetra eget ipsum luctus porttitor. Quisque pharetra tellus at aliquet ultrices. Vivamus elementum rhoncus mi sit amet ultrices. Pellentesque vitae aliquet nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean orci nunc, vehicula nec rhoncus vel, tempus id quam. Nulla ac sagittis quam, non iaculis sapien.', NULL, b'0', b'0'),
+(31, 11, 2, NULL, NULL, 'Donec faucibus fermentum ex at eleifend. Fusce nisl massa, molestie at convallis sollicitudin, efficitur at nulla. Vivamus eu nisi nec dui mollis porta nec ac leo. Praesent imperdiet diam at nisi gravida, ac elementum odio semper. Ut ac mauris sed est hendrerit aliquet a iaculis erat. Proin commodo sem luctus, ullamcorper libero et, scelerisque lacus. Praesent neque magna, pulvinar blandit ornare quis, dapibus sed enim.', NULL, b'0', b'0');
 
 -- --------------------------------------------------------
 
@@ -92,15 +162,15 @@ CREATE TABLE `spam` (
   `ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Cấu trúc bảng cho bảng `star`
+-- Đang đổ dữ liệu cho bảng `spam`
 --
 
-CREATE TABLE `star` (
-  `ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `spam` (`ID`) VALUES
+(1),
+(14),
+(21),
+(22);
 
 -- --------------------------------------------------------
 
@@ -127,12 +197,16 @@ INSERT INTO `user` (`ID`, `NAME`, `AVATAR`, `PHONENUMBER`, `USER_MAIL_ADDRESS`, 
 (3, 'Phạm Đức Duy', 'asset/images/avatar/users-2.svg', '0354726844', 'ptduy861@gmail.com', 'afb326ef435912992996400297fb5b46'),
 (4, 'Nguyễn Quế Chi', 'asset/images/avatar/users-12.svg', '0915648965', 'quechi2461@gmail.com', '1cf6f87dce279bdc982c6315d76cb287'),
 (5, 'Phan Hải Đăng', 'asset/images/avatar/users-15.svg', '0978645687', 'phdang3345@gmail.com', 'c96e3760a924df57306c17a022279d5f'),
-(6, 'Trần Thu Ngân', 'asset/images/avatar/users-3.svg', '0999912459', 'ttngan74466@gmail.com', 'a6b9b222b2608b3858e5c94a2d2cdbec'),
+(6, 'Trần Thu Ngân', 'asset/images/avatar/users-5.svg', '0999912459', 'ttngan74466@gmail.com', 'a6b9b222b2608b3858e5c94a2d2cdbec'),
 (7, 'Tiêu Trí Kiên', 'asset/images/avatar/users-11.svg', '0988515975', 'tieuchikien1230@gmail.com', '81376b67fa44c9dd77a433b0299c827a'),
 (8, 'Trần Vũ Ngân', 'asset/images/avatar/users-3.svg', '0985678549', 'tranvungan@gmail.com', '1aeb357a508af2792b37ef8717d96bc7'),
 (9, 'Phạm Văn Lâm', 'asset/images/avatar/users-1.svg', '0975684895', 'phamvanlam@gmail.com', 'cb7ae94d9e85607ac9f5508210f17b74'),
-(10, 'Nguyễn Hùng Dũng', 'asset/images/avatar/users-2.svg', '0945698759', 'nguyenhungdung@gmail.com', '9c3b2d4d36adcf71499f0a1df90b98d9'),
-(11, 'Trần Tuấn Sang', 'asset/images/avatar/users-8.svg', '0978645415', 'trantuansang@gmail.com', 'eb1fd358cd3656440e6be7d69528ba06');
+(10, 'Nguyễn Hùng Dũng', 'asset/images/avatar/users-4.svg', '0945698759', 'nguyenhungdung@gmail.com', '9c3b2d4d36adcf71499f0a1df90b98d9'),
+(11, 'Trần Tuấn Sang', 'asset/images/avatar/users-8.svg', '0978645415', 'trantuansang@gmail.com', 'eb1fd358cd3656440e6be7d69528ba06'),
+(12, 'Trần Bảo Long', 'asset/images/avatar/users-6.svg', '0975395186', 'tranbaolong@gmail.com', 'b1ab890c11bad9434bac7713c429785b'),
+(13, 'Nguyễn Thị Thanh Nhàn', 'asset/images/avatar/users-9.svg', '0998488899', 'ngthanhnhan@gmail.com', '1f0a6517b776338267dbfd3f83478eff'),
+(14, 'Chế Hoài Lộc', 'asset/images/avatar/users-10.svg', '094485596', 'chehoailoc@gmail.com', '621f97dc0e9022ecb2f56109fd62cbf9'),
+(15, 'Trần Trung Hiếu', 'asset/images/avatar/users-13.svg', '0955955877', 'tthieu@gmail.com', '5718955a36cf7026072be649074d9873');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -179,12 +253,6 @@ ALTER TABLE `spam`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `star`
---
-ALTER TABLE `star`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
@@ -198,19 +266,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `mail`
 --
 ALTER TABLE `mail`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -248,12 +316,6 @@ ALTER TABLE `recyclebin`
 --
 ALTER TABLE `spam`
   ADD CONSTRAINT `FK_SPAM_MAIL_ID` FOREIGN KEY (`ID`) REFERENCES `mail` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Các ràng buộc cho bảng `star`
---
-ALTER TABLE `star`
-  ADD CONSTRAINT `FK_IMPORTANT_MAIL_ID` FOREIGN KEY (`ID`) REFERENCES `mail` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
