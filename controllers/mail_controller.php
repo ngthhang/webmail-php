@@ -1,20 +1,30 @@
 <?php
-    class MailController{
-        public function index(){
+    require_once('base_controller.php');
+    class MailController extends BaseController{
+        function __construct()
+        {
+            $this->name = 'mail';
+        }
+
+        function index(){
             // test git index
         }
 
-        public function view()
+        function view()
         {
 
         }
 
-        public function reply()
+        function compose(){
+            $this->render('compose',array());
+        }
+
+        function reply()
         {
 
         }
 
-        public function forward()
+        function forward()
         {
 
         }
