@@ -120,11 +120,15 @@ require_once('config/config.php');
                         <tr class='d-flex mail mail-unread'>
                             <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2 font-weight-bold'>webmail</p>
+                                <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
-                                <span class='font-weight-bold'>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            <td class='col-8 mail-user'>
+                                <span>subject tile </span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr class='d-flex mail'>
@@ -132,9 +136,13 @@ require_once('config/config.php');
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
                                 <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
+                            <td class='col-8 mail-user'>
                                 <span>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr>
@@ -145,9 +153,13 @@ require_once('config/config.php');
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
                                 <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
+                            <td class='col-8 mail-user'>
                                 <span>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr class='d-flex mail'>
@@ -155,9 +167,13 @@ require_once('config/config.php');
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
                                 <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
+                            <td class='col-8 mail-user'>
                                 <span>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr class='d-flex mail'>
@@ -165,22 +181,30 @@ require_once('config/config.php');
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
                                 <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
+                            <td class='col-8 mail-user'>
                                 <span>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Today</td>
                         </tr>
-                        <tr class='d-flex mail mail-unread'>
+                        <tr class='d-flex mail'>
                             <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2 font-weight-bold'>webmail</p>
+                                <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
-                                <span class='font-weight-bold'>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            <td class='col-8 mail-user'>
+                                <span>subject tile </span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr class='d-flex mail'>
@@ -188,22 +212,30 @@ require_once('config/config.php');
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
                                 <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
+                            <td class='col-8 mail-user'>
                                 <span>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Today</td>
                         </tr>
-                        <tr class='d-flex mail mail-unread'>
+                        <tr class='d-flex mail'>
                             <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2 font-weight-bold'>webmail</p>
+                                <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
-                                <span class='font-weight-bold'>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            <td class='col-8 mail-user'>
+                                <span>subject tile </span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr class='d-flex mail'>
@@ -211,22 +243,30 @@ require_once('config/config.php');
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
                                 <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
+                            <td class='col-8 mail-user'>
                                 <span>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Today</td>
+                            <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Yesterday</td>
                         </tr>
-                        <tr class='d-flex mail mail-unread'>
+                        <tr class='d-flex mail'>
                             <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2 font-weight-bold'>webmail</p>
+                                <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
-                                <span class='font-weight-bold'>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            <td class='col-8 mail-user'>
+                                <span>subject tile </span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                         <tr class='d-flex mail'>
@@ -234,9 +274,13 @@ require_once('config/config.php');
                                 <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
                                 <p class='ml-2'>webmail</p>
                             </td>
-                            <td class='col-9 mail-user'>
+                            <td class='col-8 mail-user'>
                                 <span>subject tile </span>
-                                <span class='mail-content-text'> - iste maiores officia aspernatur iusto voluptates molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
+                            </td>
+                            <td class='col-1 mail-user'>
+                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
+                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
                             </td>
                         </tr>
                     </tbody>

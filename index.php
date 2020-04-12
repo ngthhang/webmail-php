@@ -3,7 +3,7 @@
 
     $support_controller = array(
         'home' => array('index' , 'error','view','star','spam'),
-        'cart'=>array('index')
+        'mail'=>array('view','compose','reply','forward')
     );
 
     if(isset($_GET['controller'])){

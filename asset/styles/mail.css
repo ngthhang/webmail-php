@@ -1,0 +1,24 @@
+.table-mail-header{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+button{
+    padding: 1px 6px 1px 6px;
+}
+
+/* Add this to align vertically */
+button > img,
+button > p {
+  vertical-align: middle;
+}
+
+.dropdown-toggle::after { 
+    content: none; 
+} 
+
+tr.no-border td{
+    border: 0;
+}

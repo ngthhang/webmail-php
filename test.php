@@ -1,3 +1,3 @@
 <?php
-    require_once('./views/mail/compose.php');
+    require_once('./views/mail/view.php');
 ?>
