@@ -1,7 +1,7 @@
 // Handle input login
 function isInputValid(){
     let email = $('#email').val();
-    let password = $('#passwork').val();
+    let password = $('#pwd').val();
     let error_message = $('error-message');
     let error_message_content = $('error-message-content');
 
