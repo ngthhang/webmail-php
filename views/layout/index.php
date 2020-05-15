@@ -26,13 +26,12 @@ require_once('config/config.php');
 </head>
 
 <body>
-    <?= $content ?>
-    <div class='container-fluid p-0 h-100'>
+    <div class='container-fluid p-0'>
         <div class='row h-100 w-100 m-0'>
             <!-- START MENU SIDE BAR -->
-            <div class='col-xl-2 d-none d-md-block col-md-4 col-lg-4 bg-light p-0 border-right'>
+            <div class='col-xl-2 d-none d-md-block col-md-4 col-lg-4 p-0 border-right h-100 sticky-top'>
                 <!-- MENU SETTING WEBMAIL -->
-                <table class='table border-bottom'>
+                <table class='table table-borderless'>
                     <thead>
                         <tr>
                             <td class='table-home-header'>
@@ -103,11 +102,11 @@ require_once('config/config.php');
             <!-- END MENU SIDE BAR -->
 
             <!-- START LIST MAIL DISPLAY -->
-            <div class='col-xl-10 col-md-8 col-lg-8 p-0 bg-light'>
+            <div class='col-xl-10 col-md-8 col-lg-8 p-0'>
                 <table class='table border-bottom'>
                     <thead>
                         <tr>
-                            <td colspan="2" class='table-home-header' style="padding: 24px 30px">
+                            <td colspan="2" class='table-home-header sticky-top bg-white border-bottom' style="padding: 24px 30px">
                                 <p class='label-text font-weight-bold'>Inbox</p>
                                 <img src="asset/images/icons/search.png" class='img-fluid icon search-icon'>
                             </td>
