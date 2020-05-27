@@ -221,7 +221,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `NAME`, `AVATAR`, `PHONENUMBER`, `USER_MAIL_ADDRESS`, `PASSWORD`) VALUES
-(1, 'Nguyễn Thúy Hằng', 'asset/images/avatar/users-16.svg', '0908089819', 'ngthhang9102000@gmail', '9a9c78a7298a9291d61d9f78b3c0b290'),
+(1, 'Nguyễn Thúy Hằng', 'asset/images/avatar/users-16.svg', '0908089819', 'ngthhang9102000@gmail.com', '9a9c78a7298a9291d61d9f78b3c0b290'),
 (2, 'Đoàn Hồng Phương Ngọc', 'asset/images/avatar/users-14.svg', '0933288236', 'doanhongphuongngoc@gmail.com', '70b1494dd92373021278682c4ab43b6c'),
 (3, 'Phạm Đức Duy', 'asset/images/avatar/users-2.svg', '0354726844', 'ptduy861@gmail.com', 'afb326ef435912992996400297fb5b46'),
 (4, 'Nguyễn Quế Chi', 'asset/images/avatar/users-12.svg', '0915648965', 'quechi2461@gmail.com', '1cf6f87dce279bdc982c6315d76cb287'),

@@ -33,6 +33,6 @@
     background-color: #33A1FD;
 }
 
-.routelogin-text{
-    text-align: right;
+.error-text{
+    color: red;
 }

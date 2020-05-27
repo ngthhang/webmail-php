@@ -66,4 +66,10 @@
 .mail-unread{
     background-color: #ffffff;
 }
+.mail-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
 /* FINISH MAIL ROW CUSTOM */

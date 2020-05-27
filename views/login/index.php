@@ -18,7 +18,26 @@
   <link rel="stylesheet" type="text/css" href="asset/styles/index.css">
   <script src="asset/scripts/login.js"></script>
 </head>
+<?php 
+  require_once('config/config.php');
+  require_once( ROOT.'\models\User.php');
+  if (isset($_POST['login'])) {
+    $usermail = addslashes($_POST['email']);
+    $password = addslashes(md5($_POST['pwd']));
 
+    if (User::checkUserExist($usermail)) {
+      if (User::checkLogin($usermail, $password)) {
+        echo "<script>alert('Log in successfully!')</script>";
+        $_SESSION['email'] = $usermail;
+        redirect('index.php');
+      } else {
+        echo "<script>alert('Password is not correct, please try again')</script>";
+      }
+    } else {
+      echo "<script>showError('Email is not exist in database, please try again')</script>";
+    }
+  }
+?>
 <body>
   <div class='container-fluid p-0 h-100'>
     <div class='row h-100'>
@@ -26,7 +45,7 @@
       </div>
       <div class='col-sm-8 col-xl-8 col-12 col-md-8 mt-5'>
 
-        <form action="" class='p-5 mt-5 login-form'>
+        <form action="" method="POST" onsubmit="return isInputLoginValid()" class='p-5 mt-5 login-form'>
           <h2 class='font-weight-bold mb-5'>Sign in to webmail</h2>
           <div class="form-group mb-3">
             <label for="email" class='font-weight-bold'>Email Address:</label>
@@ -37,11 +56,11 @@
             <input type="password" class="login-input form-control" id="pwd" onclick="onFocus()" name="pwd">
           </div>
           <a href="" class=''>Forgot Password?</a>
-          <a href="" class='mb-3'>Not have account? Signup</a>
+          <a href="index.php?controller=login&action=logup" class='mb-3'>Not have account? Signup</a>
           <div>
-            <p id='error-message'></p>
+            <p class='mb-3 error-text' id='error-message'></p>
           </div>
-          <button type="submit" class=" button btn btn-primary w-25 font-weight-bold">Login</button>
+          <button type="submit" name="login" class=" button btn btn-primary w-25 font-weight-bold">Login</button>
         </form>
       </div>
     </div>

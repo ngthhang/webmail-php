@@ -12,16 +12,26 @@
             $this->render('error',array());
         }
 
-        function view(){
-            echo 'View home';
-        }
-
         function star(){
-            echo 'Star home';
+            $this->render('star', array());
         }
 
         function spam(){
-            echo 'Spam home';
+            $this->render('spam', array());
+        }
+
+        function trash()
+        {
+            $this->render('trash', array());
+        }
+
+        function draft()
+        {
+            $this->render('draft', array());
+        }
+
+        function sent()
+        {
+            $this->render('sent', array());
         }
     }
-?>

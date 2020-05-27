@@ -1,36 +1,96 @@
-// Handle input login
-function isInputValid(){
-    let email = $('#email').val();
-    let password = $('#passwork').val();
-    let error_message = $('error-message');
-    let error_message_content = $('error-message-content');
+//on focus 
+function onFocus() {
+    let error_message = $('#error-message');
+    error_message.html('');
+}
 
-    if (email == '') {
-        error_message_content.html('Please enter your email');
+// handle input login
+function isInputLoginValid() {
+    let useremail = $('#email').val();
+    let password = $('#pwd').val();
+    let error_message = $('#error-message');
+    if (useremail == '') {
+        error_message.html('Please enter your email');
         error_message.show();
-        email.focus();
+        event.preventDefault();
+        usermail.focus();
         return false
-    } else if(!email.includes("@")) {
-        error_message_content.html('Your email is not valid');
+    } else if (!useremail.includes("@")) {
+        error_message.html('Your email is not valid');
         error_message.show();
-        email.focus();
+        event.preventDefault();
+        usermail.focus();
         return false
-    } else if(email.length < 3){
-        error_message_content.html('Email must contain at least 3 characters');
+    } else if (password == '') {
+        error_message.html('Please enter your password');
         error_message.show();
-        email.focus();
+        event.preventDefault();
+        userpassword.focus();
         return false
-    } else if (passwork == '') {
-        error_message_content.html('Please enter your passwork');
+    } else if (password.length < 6) {
+        error_message.html('Passwork must contain at least 6 characters');
         error_message.show();
-        password.focus();
+        event.preventDefault();
+        userpassword.focus();
         return false
-    } else if(passwork.length < 3){
-        error_message_content.html('Passwork must contain at least 3 characters');
+    }
+    error_message.hide();
+    return true
+}
+
+// Handle input logup
+function isInputValid() {
+    let email = $('#usermail').val();
+    let password = $('#userpassword').val();
+    let name = $('#username').val();
+    let number = $('#userphone').val();
+    let error_message = $('#error-message');
+    if (name == '') {
+        error_message.html("Please enter your name");
         error_message.show();
-        passwork.focus();
+        username.focus();
+        event.preventDefault();
+        return false
+    }
+    else if (number.length < 10 || number.length > 10) {
+        error_message.html("Your number phone is invalid");
+        error_message.show();
+        event.preventDefault();
+        userphone.focus();
+        return false
+    }
+    else if (email == '') {
+        error_message.html('Please enter your email');
+        error_message.show();
+        event.preventDefault();
+        usermail.focus();
+        return false
+    } else if (!email.includes("@")) {
+        error_message.html('Your email is not valid');
+        error_message.show();
+        event.preventDefault();
+        usermail.focus();
+        return false
+    } else if (password == '') {
+        error_message.html('Please enter your password');
+        error_message.show();
+        event.preventDefault();
+        userpassword.focus();
+        return false
+    } else if (password.length < 6) {
+        error_message.html('Passwork must contain at least 6 characters');
+        error_message.show();
+        event.preventDefault();
+        userpassword.focus();
         return false
     }
     error_message.hide("slow");
     return true
+}
+
+//show error
+function showError(message){
+    let error_message = $('#error-message');
+    error_message.html(message);
+    error_message.show();
 }

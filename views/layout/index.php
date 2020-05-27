@@ -31,71 +31,73 @@ require_once('config/config.php');
             <!-- START MENU SIDE BAR -->
             <div class='col-xl-2 d-none d-md-block col-md-4 col-lg-4 p-0 border-right h-100 sticky-top'>
                 <!-- MENU SETTING WEBMAIL -->
-                <table class='table table-borderless'>
-                    <thead>
-                        <tr>
-                            <td class='table-home-header'>
-                                <p class='font-weight-bold label-text'>webmail@...</p>
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid avatar' />
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class='table-body'>
-                                <button class='btn d-flex flex-row p-0'>
+                <form method="get" name="menuSide" action="index.php">
+                    <input type="text" name="controller" value="" id='controller' style="display: none">
+                    <input type="text" name="action" value="" id='action' style="display: none">
+                    <table class='table table-borderless'>
+                        <thead>
+                            <tr>
+                                <td class='table-home-header'>
+                                    <p class='font-weight-bold label-text'><?= $current_user ?></p>
+                                    <img src="<?= $avatar ?>" alt='avatar' class='img-fluid avatar' />
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id='compose' onclick="onRoute(this.id)">
+                                <td class='table-body'>
                                     <img src="asset/images/icons/add.png" class='img-fluid icon mr-2' alt="">
                                     <p class='label-text'>Compose</p>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='d-flex flex-row justify-content-between table-body'>
-                                <div class='table-body'>
-                                    <img src="asset/images/icons/inbox.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Inbox</p>
-                                </div>
-                                <span class="badge badge-primary p-2">100</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='table-body'>
-                                <img src="asset/images/icons/sent.png" class='img-fluid icon mr-2' alt="">
-                                <p class='label-text'>Sent</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='table-body'>
-                                <img src="asset/images/icons/draft.png" class='img-fluid icon mr-2' alt="">
-                                <p class='label-text'>Starred</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='table-body'>
-                                <img src="asset/images/icons/draft.png" class='img-fluid icon mr-2' alt="">
-                                <p class='label-text'>Draft</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='table-body'>
-                                <img src="asset/images/icons/spam.png" class='img-fluid icon mr-2' alt="">
-                                <p class='label-text'>Spam</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='table-body'>
-                                <img src="asset/images/icons/bin.png" class='img-fluid icon mr-2' alt="">
-                                <p class='label-text'>Trash</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class='table-body'>
-                                <img src="asset/images/icons/logout.png" class='img-fluid icon mr-2' alt="">
-                                <p class='label-text'>Sign out</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                            <tr id='index' onclick="onRoute(this.id)">
+                                <td class='d-flex flex-row justify-content-between table-body'>
+                                    <div class='table-body'>
+                                        <img src="asset/images/icons/inbox.png" class='img-fluid icon mr-2' alt="">
+                                        <p class='label-text'>Inbox</p>
+                                    </div>
+                                    <span class="badge badge-primary p-2">100</span>
+                                </td>
+                            </tr>
+                            <tr id='sent' onclick="onRoute(this.id)">
+                                <td class='table-body'>
+                                    <img src="asset/images/icons/sent.png" class='img-fluid icon mr-2' alt="">
+                                    <p class='label-text'>Sent</p>
+                                </td>
+                            </tr>
+                            <tr id='star' onclick="onRoute(this.id)">
+                                <td class='table-body'>
+                                    <img src="asset/images/icons/draft.png" class='img-fluid icon mr-2' alt="">
+                                    <p class='label-text'>Starred</p>
+                                </td>
+                            </tr>
+                            <tr id='draft' onclick="onRoute(this.id)">
+                                <td class='table-body'>
+                                    <img src="asset/images/icons/draft.png" class='img-fluid icon mr-2' alt="">
+                                    <p class='label-text'>Draft</p>
+                                </td>
+                            </tr>
+                            <tr id='spam' onclick="onRoute(this.id)">
+                                <td class='table-body'>
+                                    <img src="asset/images/icons/spam.png" class='img-fluid icon mr-2' alt="">
+                                    <p class='label-text'>Spam</p>
+                                </td>
+                            </tr>
+                            <tr id='trash' onclick="onRoute(this.id)">
+                                <td class='table-body'>
+                                    <img src="asset/images/icons/bin.png" class='img-fluid icon mr-2' alt="">
+                                    <p class='label-text'>Trash</p>
+                                </td>
+                            </tr>
+                            <tr id='logout' onclick="onRoute(this.id)">
+                                <td class='table-body'>
+                                    <img src="asset/images/icons/logout.png" class='img-fluid icon mr-2' alt="">
+                                    <p class='label-text'>Sign out</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
 
 
@@ -107,182 +109,12 @@ require_once('config/config.php');
                     <thead>
                         <tr>
                             <td colspan="2" class='table-home-header sticky-top bg-white border-bottom' style="padding: 24px 30px">
-                                <p class='label-text font-weight-bold'>Inbox</p>
+                                <p class='label-text font-weight-bold'><?= $header ?></p>
                                 <img src="asset/images/icons/search.png" class='img-fluid icon search-icon'>
                             </td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Today</td>
-                        </tr>
-                        <tr class='d-flex mail mail-unread'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Yesterday</td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Today</td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Today</td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class='bg-date font-weight-bold' style="padding: 14px 0px 14px 30px">Yesterday</td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                        <tr class='d-flex mail'>
-                            <td class='col-3 mail-user' style="padding: 5px 0px 5px 30px">
-                                <img src='asset/images/avatar/1.png' alt='avatar' class='img-fluid mail-avatar' />
-                                <p class='ml-2'>webmail</p>
-                            </td>
-                            <td class='col-8 mail-user'>
-                                <span>subject tile </span>
-                                <span class='mail-content-text'> - ist molestias? Explicabo assumenda quae repudiandae officiis quaerat!</span>
-                            </td>
-                            <td class='col-1 mail-user'>
-                                <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2 star_icon' alt="">    
-                                <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
-                            </td>
-                        </tr>
-                    </tbody>
+                    <?= $content ?>
                 </table>
             </div>
             <!-- END LIST MAIL DISPLAY -->
