@@ -79,10 +79,18 @@ if (isset($_POST['logup'])) {
                         <input type="email" class="form-control login-input" id="usermail" onclick="onFocus()" name="usermail">
                     </div>
                     <div class="form-group">
-                        <label for="pwd" class='font-weight-bold'>Password:</label>
-                        <input type="password" class="login-input form-control" id="userpassword" onclick="onFocus()" name="userpassword">
+                        <label for="userpassword" class='font-weight-bold'>Password:</label>
+                        <div class='input-group'>
+                            <input type="password" class="login-input form-control" id="userpassword" onclick="onFocus()" name="userpassword">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <input type="checkbox" onclick="showPassword('userpassword')">
+                                </div>
+                                <span class='input-group-text'>Show Password</span>
+                            </div>
+                        </div>
                     </div>
-                    <a href="index.php?controller=login&action=logup" class='mb-3'>Already have account? Signin</a>
+                    <a href="index.php?controller=login&action=index" class='mb-3'>Already have account? Signin</a>
                     <p class='error-text pb-3' id='error-message'></p>
                     <button type="submit" name="logup" class=" button btn btn-primary w-25 font-weight-bold">Logup</button>
                 </form>

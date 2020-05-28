@@ -12,7 +12,7 @@
 
         function view()
         {
-            echo "view mail";
+            $this->render('view', array());
         }
 
         function compose(){

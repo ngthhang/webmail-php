@@ -22,6 +22,7 @@ require_once('config/config.php');
     <!-- CSS LINK EXTERNAL FILE-->
     <link rel="stylesheet" type="text/css" href="asset/styles/index.css">
     <link rel="stylesheet" type="text/css" href="asset/styles/home-index.css">
+    <link rel="stylesheet" type="text/css" href="asset/styles/mail.css">
     <script src="asset/scripts/home-index.js"></script>
 </head>
 
@@ -29,7 +30,7 @@ require_once('config/config.php');
     <div class='container-fluid p-0'>
         <div class='row h-100 w-100 m-0'>
             <!-- START MENU SIDE BAR -->
-            <div class='col-xl-2 d-none d-md-block col-md-4 col-lg-4 p-0 border-right h-100 sticky-top'>
+            <div class='col-xl-2 d-none d-md-block col-md-4 col-lg-4 p-0 h-100 sticky-top'>
                 <!-- MENU SETTING WEBMAIL -->
                 <form method="get" name="menuSide" action="index.php">
                     <input type="text" name="controller" value="" id='controller' style="display: none">
@@ -56,7 +57,7 @@ require_once('config/config.php');
                                         <img src="asset/images/icons/inbox.png" class='img-fluid icon mr-2' alt="">
                                         <p class='label-text'>Inbox</p>
                                     </div>
-                                    <span class="badge badge-primary p-2">100</span>
+                                    <span class="badge badge-primary p-2"><?= $total_unread_mail ?></span>
                                 </td>
                             </tr>
                             <tr id='sent' onclick="onRoute(this.id)">
@@ -86,7 +87,7 @@ require_once('config/config.php');
                             <tr id='trash' onclick="onRoute(this.id)">
                                 <td class='table-body'>
                                     <img src="asset/images/icons/bin.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Trash</p>
+                                    <p class='label-text'>Bin</p>
                                 </td>
                             </tr>
                             <tr id='logout' onclick="onRoute(this.id)">
@@ -104,19 +105,7 @@ require_once('config/config.php');
             <!-- END MENU SIDE BAR -->
 
             <!-- START LIST MAIL DISPLAY -->
-            <div class='col-xl-10 col-md-8 col-lg-8 p-0'>
-                <table class='table border-bottom'>
-                    <thead>
-                        <tr>
-                            <td colspan="2" class='table-home-header sticky-top bg-white border-bottom' style="padding: 24px 30px">
-                                <p class='label-text font-weight-bold'><?= $header ?></p>
-                                <img src="asset/images/icons/search.png" class='img-fluid icon search-icon'>
-                            </td>
-                        </tr>
-                    </thead>
-                    <?= $content ?>
-                </table>
-            </div>
+            <?= $content ?>
             <!-- END LIST MAIL DISPLAY -->
 
         </div>

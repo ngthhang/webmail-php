@@ -94,3 +94,13 @@ function showError(message){
     error_message.html(message);
     error_message.show();
 }
+
+//toggle show password 
+function showPassword(input){
+    let input_password = document.getElementById(input);
+    if(input_password.type === 'text'){
+        input_password.type = 'password';
+    } else{
+        input_password.type = 'text';
+    }
+}

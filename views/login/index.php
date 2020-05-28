@@ -18,26 +18,27 @@
   <link rel="stylesheet" type="text/css" href="asset/styles/index.css">
   <script src="asset/scripts/login.js"></script>
 </head>
-<?php 
-  require_once('config/config.php');
-  require_once( ROOT.'\models\User.php');
-  if (isset($_POST['login'])) {
-    $usermail = addslashes($_POST['email']);
-    $password = addslashes(md5($_POST['pwd']));
+<?php
+require_once('config/config.php');
+require_once(ROOT . '\models\User.php');
+if (isset($_POST['login'])) {
+  $usermail = addslashes($_POST['email']);
+  $password = addslashes(md5($_POST['pwd']));
 
-    if (User::checkUserExist($usermail)) {
-      if (User::checkLogin($usermail, $password)) {
-        echo "<script>alert('Log in successfully!')</script>";
-        $_SESSION['email'] = $usermail;
-        redirect('index.php');
-      } else {
-        echo "<script>alert('Password is not correct, please try again')</script>";
-      }
+  if (User::checkUserExist($usermail)) {
+    if (User::checkLogin($usermail, $password)) {
+      echo "<script>alert('Log in successfully!')</script>";
+      $_SESSION['email'] = $usermail;
+      redirect('index.php');
     } else {
-      echo "<script>showError('Email is not exist in database, please try again')</script>";
+      echo "<script>alert('Password is not correct, please try again')</script>";
     }
+  } else {
+    echo "<script>showError('Email is not exist in database, please try again')</script>";
   }
+}
 ?>
+
 <body>
   <div class='container-fluid p-0 h-100'>
     <div class='row h-100'>
@@ -53,7 +54,15 @@
           </div>
           <div class="form-group">
             <label for="pwd" class='font-weight-bold'>Password:</label>
-            <input type="password" class="login-input form-control" id="pwd" onclick="onFocus()" name="pwd">
+            <div class='input-group'>
+              <input type="password" class="login-input form-control" id="pwd" onclick="onFocus()" name="pwd">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <input type="checkbox" onclick="showPassword('pwd')">
+                </div>
+                <span class='input-group-text'>Show Password</span>
+              </div>
+            </div>
           </div>
           <a href="" class=''>Forgot Password?</a>
           <a href="index.php?controller=login&action=logup" class='mb-3'>Not have account? Signup</a>

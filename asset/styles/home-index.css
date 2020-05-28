@@ -18,6 +18,10 @@
 
 
 /* START TABLE LIST MAIL */
+table tbody {
+    cursor: pointer;
+}
+
 .table-home-header{
     display: flex;
     flex-direction: row;
