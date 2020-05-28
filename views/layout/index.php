@@ -17,12 +17,15 @@ require_once('config/config.php');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <title>webmail</title>
     <link rel="shortcut icon" href="asset/images/icons/logo.png" />
-    <link rel="stylesheet" type="text/css" href="asset/styles/login.css">
 
     <!-- CSS LINK EXTERNAL FILE-->
     <link rel="stylesheet" type="text/css" href="asset/styles/index.css">
     <link rel="stylesheet" type="text/css" href="asset/styles/home-index.css">
+    <link rel="stylesheet" type="text/css" href="asset/styles/login.css">
     <link rel="stylesheet" type="text/css" href="asset/styles/mail.css">
+
+    <!-- JS LINK EXTERNAL FILE-->
+    <script src="asset/scripts/mail.js"></script>
     <script src="asset/scripts/home-index.js"></script>
 </head>
 

@@ -27,5 +27,19 @@
             $stm->close();
             return null;
         }
+
+        public static function isMailDraft($id){
+            $sql = "SELECT * FROM DRAFT WHERE ID = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('i',$id);
+            $status = $stm->execute();
+            if ($status) {
+                $data = $stm->get_result();
+                return $data->num_rows;
+            }
+            $stm->close();
+            return null;
+        }
     }
 ?>

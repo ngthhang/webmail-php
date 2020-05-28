@@ -19,7 +19,6 @@ class BaseController
             require_once('views/' . $this->name . '/' . $view . '.php');
         } else {
             
-        
             // get info current user 
             $current_user = str_replace('@gmail.com','',$_SESSION['email']);
             $current_user = substr($current_user,0,13) . '...';

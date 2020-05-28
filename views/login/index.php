@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
       echo "<script>alert('Password is not correct, please try again')</script>";
     }
   } else {
-    echo "<script>showError('Email is not exist in database, please try again')</script>";
+    echo "<script>alert('Email is not exist in database, please try again')</script>";
   }
 }
 ?>

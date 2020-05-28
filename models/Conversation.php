@@ -22,5 +22,23 @@
                 }
             }
         }
+
+        public static function getSize(){
+            $sql = "SELECT MAX(ID) AS TOTALCONVERSATION FROM CONVERSATION";
+            $db = DB::getDB();
+            $stm = $db->query($sql);
+            $result = $stm->fetch_array();
+            return $result['TOTALCONVERSATION'];
+        }
+
+        public static function addConversation($id,$subject){
+            $sql = "INSERT INTO CONVERSATION VALUES(?,?)";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('is',$id,$subject);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
     }
 ?>

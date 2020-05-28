@@ -11,12 +11,15 @@
     );
 
     if(!isset($_SESSION['email'])){
+        $controller = 'login';
         if(isset($_GET['action'])){
-            $action = $_GET['action'];    
+            $action = $_GET['action']; 
+            if(!in_array($action, $support_controller[$controller])){
+                $action = 'index';
+            }
         } else{
             $action = 'index';
         }
-        $controller = 'login';
     }
     else{
         if(isset($_GET['controller'])){

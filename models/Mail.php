@@ -98,4 +98,37 @@
             return null;
         }
 
+        public static function getSize(){
+            $sql = "SELECT MAX(ID) AS TOTALMAIL FROM MAIL";
+            $db = DB::getDB();
+            $stm = $db->query($sql);
+            $result = $stm->fetch_array();
+            return $result['TOTALMAIL'];
+        }
+
+        public static function updateSeenMail($id){
+            $sql = "UPDATE MAIL SET SEEN = 1 WHERE ID = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('i',$id);
+            $status = $stm->execute();
+            $stm->close();
+            return $status;
+        }
+
+        public static function addMail($user_sent,$user_receive,$subject,$content,$enclosed){
+            $sql = "INSERT INTO MAIL VALUES(?,?,?,?,?,?,?,?)";
+            $db = DB::getDB();
+            $id = Mail::getSize() + 1;
+            $conversation_id = Conversation::getSize() + 1;
+            Conversation::addConversation($conversation_id,$subject);
+            date_default_timezone_set('Etc/GMT-7');
+            $sent_time = date('Y-m-d h:i:s', time());
+            $seen = 0;
+            $stm = $db->prepare($sql);
+            $stm->bind_param('iiiisssi',$id, $conversation_id, $user_sent, $user_receive, $sent_time, $content, $enclosed, $seen);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
     }

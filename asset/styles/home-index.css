@@ -76,4 +76,56 @@ table tbody {
     align-items: center;
     justify-content: space-between;
 }
+
+.mail-input{
+    border: 0;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+.mail-input:focus{
+    outline: none;
+}
+
+.mail-input:disabled{
+    outline: none;
+}
+
+.mail-input:active{
+    outline: none;
+}
+
+.mail-input-label{
+    margin: 0;
+    font-size: 16px;
+    color: #7F7F7F;
+}
+
+.table-mail-input{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mail-button{
+    padding: 5px 5px 5px 0px;
+    margin: 0px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.mail-button:hover{
+    background-color: #E0E0E0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: white !important;
+}
 /* FINISH MAIL ROW CUSTOM */
