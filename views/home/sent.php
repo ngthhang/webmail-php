@@ -7,6 +7,7 @@ $all_mail = Mail::getSentMail($current_user_id);
         <input type="text" class="controller" name="controller" value="" style="display: none;">
         <input type="text" class="action" name="action" value="" style="display: none;">
         <input type="text" class="id_mail" value="" name="id_mail" style="display: none;">
+        <input type="text" value="sent" style="display: none;" name="previous_route" class="previous_route">
         <table class='table border-bottom'>
             <thead>
                 <tr>

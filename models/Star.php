@@ -42,5 +42,26 @@
             $stm->close();
             return null;
         }
+
+        public static function addStarMail($id, $user_id){
+            $sql = "INSERT INTO STAR VALUES(?,?)";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii',$id,$user_id);
+            $status = $stm->execute();
+            $stm->close();
+            return $status;
+        }
+
+        public static function deleteStarMail($id,$user_id){
+            $sql = "DELETE FROM STAR WHERE ID = ? AND USER_ID = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii',$id,$user_id);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
+
     }
 ?>

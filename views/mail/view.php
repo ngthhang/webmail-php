@@ -1,4 +1,5 @@
 <?php
+$previous_action = $_GET['previous_route'];
 if (!isset($_GET['id_mail'])) {
     echo "<script>alert('Mail id is not exist!')</script>";
     redirect('index.php');
@@ -18,9 +19,9 @@ if (!isset($_GET['id_mail'])) {
     $user_sent = User::getUserById($mail->user_sent);
     $name = $user_sent->name;
     if ($user_sent->avatar === '' || is_null($user_sent->avatar)) {
-        $avatar = 'asset/images/avatar/1.png';
+        $user_sent_avatar = 'asset/images/avatar/1.png';
     } else {
-        $avatar = $user_sent->avatar;
+        $user_sent_avatar = $user_sent->avatar;
     }
 }
 ?>
@@ -31,7 +32,7 @@ if (!isset($_GET['id_mail'])) {
         <table class='table table-borderless'>
             <thead>
                 <tr class='table-mail-header sticky-top bg-white'>
-                    <td onclick="onClickBackButton()" class='table-body ml-3'>
+                    <td onclick="onClickBackButton(<?= $previous_action ?>)" class='table-body ml-3'>
                         <img src="asset/images/icons/back.png" class='img-fluid icon' alt="">
                     </td>
                     <td>
@@ -92,7 +93,7 @@ if (!isset($_GET['id_mail'])) {
                 </tr>
                 <tr class='no-border d-flex'>
                     <td class='d-flex flex-row mail-user' style="padding-left: 30px">
-                        <img src='<?= $avatar ?>' alt='avatar' class='img-fluid avatar' />
+                        <img src='<?= $user_sent_avatar ?>' alt='avatar' class='img-fluid avatar' />
                         <div class='d-flex flex-column'>
                             <p class='ml-2 label-text font-weight-bold'><?= $name ?></p>
                             <p class='ml-2'><?= $sent_time ?></p>

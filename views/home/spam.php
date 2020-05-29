@@ -7,6 +7,7 @@ $all_spam = Spam::getAllSpamByUserId($current_user_id);
         <input type="text" value="" style="display: none;" name="controller" class="controller">
         <input type="text" value="" style="display: none;" name="action" class="action">
         <input type="text" value="" style="display: none;" name="id_mail" class="id_mail">
+        <input type="text" value="spam" style="display: none;" name="previous_route" class="previous_route">
         <table class='table border-bottom'>
             <thead>
                 <tr>

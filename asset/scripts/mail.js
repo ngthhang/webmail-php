@@ -52,9 +52,21 @@ function composeMail(id){
 
 
 //routing back home page
-function onClickBackButton(){
+function onClickBackButton(previousRoute){
     $('#controller_detail').val('home');
-    $('#action_detail').val('index');
+    $('#action_detail').val(previousRoute.id);
     document.mailDetail.submit();
 }
 
+
+//on star email
+function onClickStarButton(id) {
+    window.location.href = `index.php?controller=mail&action=starred&id_mail=${id}`;
+    return
+}
+
+//on delete mail 
+function onClickDeleteButton(id){
+    window.location.href = `index.php?controller=mail&action=delete&id_mail=${id}`;
+    return 
+}

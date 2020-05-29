@@ -28,4 +28,28 @@
             $stm->close();
             return null;
         }
+
+        public static function addTrashMail($id,$date_expired,$user_id){
+            $sql = "INSERT INTO RECYCLEBIN VALUES(?,?,?)";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('isi',$id,$date_expired,$user_id);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
+
+        public static function isMailInTrash($id,$user_id){
+            $sql = "SELECT * FROM RECYCLEBIN WHERE ID = ? AND USER_ID = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii',$id,$user_id);
+            $status = $stm->execute();
+            if ($status) {
+                $data = $stm->get_result();
+                return $data->num_rows;
+            }
+            $stm->close();
+            return null;
+        }
     }

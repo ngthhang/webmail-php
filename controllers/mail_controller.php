@@ -28,5 +28,15 @@
         {
 
         }
+
+        function starred()
+        {
+            $this->render('starred',array());
+        }
+
+        function delete()
+        {
+            $this->render('delete', array());
+        }
     }
 ?>

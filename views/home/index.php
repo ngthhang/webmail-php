@@ -7,6 +7,7 @@ $all_mail = Mail::getInboxMail($current_user_id);
         <input type="text" value="" style="display: none;" name="controller" class="controller">
         <input type="text" value="" style="display: none;" name="action" class="action">
         <input type="text" value="" style="display: none;" name="id_mail" class="id_mail">
+        <input type="text" value="index" style="display: none;" name="previous_route" class="previous_route">
         <table class='table border-bottom'>
             <thead>
                 <tr>
@@ -20,6 +21,10 @@ $all_mail = Mail::getInboxMail($current_user_id);
                 <?php
                 foreach ($all_mail as $i) {
 
+                    //check if mail in bin
+                    if(Trash::isMailInTrash($i->id,$current_user_id)=== 1){
+                        continue;
+                    }
                     // display user sent
                     $user_sent = User::getUserById($i->user_sent);
                     if (is_null($user_sent->avatar) || $user_sent->avatar === '') {
@@ -50,12 +55,12 @@ $all_mail = Mail::getInboxMail($current_user_id);
                     }
 
                 ?>
-                    <tr class='<?= $style_read ?>' onclick="viewDetailMail(<?= $id ?>)">
+                    <tr class='<?= $style_read ?>'>
                         <td class='col-1 mail-user' style="padding: 5px 0px 5px 30px">
-                            <img src="asset/images/icons/<?= $star ?>.png" class='img-fluid icon mr-2 star_icon' alt="">
-                            <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
+                            <img src="asset/images/icons/<?= $star ?>.png" onclick="onClickStarButton(<?= $id ?>)" class='img-fluid star-button icon mr-2 star_icon' alt="">
+                            <img src="asset/images/icons/bin.png" onclick="onClickDeleteButton(<?= $id ?>)" class='delete_icon img-fluid icon mr-2' alt="">
                         </td>
-                        <td class='col-3 mail-user'>
+                        <td class='col-3 mail-user' onclick="viewDetailMail(<?= $id ?>)">
                             <img src='<?= $user_sent_avatar ?>' alt='avatar' class='img-fluid mail-avatar' />
                             <p class='<?= $style_text_read ?>' style="margin-left: 0.5rem ;"><?= $user_sent_name ?></p>
                         </td>
