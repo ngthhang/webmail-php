@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 30, 2020 lúc 12:16 PM
+-- Thời gian đã tạo: Th5 30, 2020 lúc 04:04 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.3
 
@@ -169,18 +169,19 @@ INSERT INTO `mail` (`ID`, `CONVERSATION_ID`, `USER_ID_SEND`, `USER_ID_RECEIVE`, 
 CREATE TABLE `recyclebin` (
   `ID` int(11) NOT NULL,
   `DATE_EXPIRED` datetime NOT NULL,
-  `USER_ID` int(11) DEFAULT NULL
+  `USER_ID` int(11) DEFAULT NULL,
+  `DELETED` bit(1) DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `recyclebin`
 --
 
-INSERT INTO `recyclebin` (`ID`, `DATE_EXPIRED`, `USER_ID`) VALUES
-(32, '2020-04-30 10:14:05', 2),
-(33, '2020-04-29 10:14:05', 2),
-(34, '2020-04-23 10:24:23', 2),
-(35, '2020-04-23 10:24:23', 2);
+INSERT INTO `recyclebin` (`ID`, `DATE_EXPIRED`, `USER_ID`, `DELETED`) VALUES
+(32, '2020-04-30 10:14:05', 2, b'0'),
+(33, '2020-04-29 10:14:05', 2, b'0'),
+(34, '2020-04-23 10:24:23', 2, b'0'),
+(35, '2020-04-23 10:24:23', 2, b'0');
 
 -- --------------------------------------------------------
 
@@ -367,6 +368,7 @@ ALTER TABLE `draft`
 -- Các ràng buộc cho bảng `mail`
 --
 ALTER TABLE `mail`
+  ADD CONSTRAINT `FK_CONVERSATION_ID` FOREIGN KEY (`CONVERSATION_ID`) REFERENCES `conversation` (`ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_USER_ID_RECEIVE` FOREIGN KEY (`USER_ID_RECEIVE`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_USER_ID_SEND` FOREIGN KEY (`USER_ID_SEND`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
