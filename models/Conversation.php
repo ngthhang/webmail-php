@@ -40,5 +40,15 @@
             $stm->close();
             return $result;
         }
+
+        public static function deleteConversation($id){
+            $sql = 'DELETE * FROM CONVERSATION WHERE ID = ?';
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('i', $id);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
     }
 ?>

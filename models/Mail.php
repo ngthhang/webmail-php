@@ -131,4 +131,52 @@
             $stm->close();
             return $result;
         }
-    }
+
+        public static function updateDraftMailDifferentSubject($id,$conversation_id,$user_sent,$user_receive,$subject,$content,$enclosed){
+            $sql = "UPDATE MAIL SET 
+                USER_ID_SEND = ?,
+                USER_ID_RECEIVE = ?,
+                CONVERSATION_ID = ?,
+                SENT_TIME = ?,
+                CONTENT = ?,
+                ENCLOSED = ?,
+                SEEN = ?
+                WHERE ID = ?
+            ";
+            $db = DB::getDB();
+            Conversation::deleteConversation($conversation_id);
+            $conversation_id = Conversation::getSize() + 1;
+            Conversation::addConversation($conversation_id, $subject);
+            date_default_timezone_set('Etc/GMT-7');
+            $sent_time = date('Y-m-d h:i:s', time());
+            $seen = 0;
+            $stm = $db->prepare($sql);
+            $stm->bind_param('iiisssii', $user_sent, $user_receive,$conversation_id, $sent_time, $content, $enclosed, $seen, $id);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
+
+        public static function updateDraftSameSubject($id,$user_sent,$user_receive,$content,$enclosed){
+            $sql = "UPDATE MAIL SET 
+                        USER_ID_SEND = ?,
+                        USER_ID_RECEIVE = ?,
+                        SENT_TIME = ?,
+                        CONTENT = ?,
+                        ENCLOSED = ?,
+                        SEEN = ?
+                        WHERE ID = ?
+                    ";
+            $db = DB::getDB();
+            date_default_timezone_set('Etc/GMT-7');
+            $sent_time = date('Y-m-d h:i:s', time());
+            $seen = 0;
+            $stm = $db->prepare($sql);
+            $stm->bind_param('iisssii', $user_sent, $user_receive, $sent_time, $content, $enclosed, $seen, $id);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
+}
+
+?>
