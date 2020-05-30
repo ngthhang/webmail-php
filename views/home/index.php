@@ -1,6 +1,13 @@
 <?php
 $header = 'Inbox';
 $all_mail = Mail::getInboxMail($current_user_id);
+if(!isset($_GET['controller'])){
+    $current_action = 'index';
+    $current_controller = 'home';
+} else {
+    $current_controller = $_GET['controller'];
+    $current_action = $_GET['action'];
+}
 ?>
 <div class='col-xl-10 col-md-8 col-lg-8 p-0'>
     <form action="index.php" method="GET" name="viewDetail">
@@ -21,12 +28,20 @@ $all_mail = Mail::getInboxMail($current_user_id);
                 <?php
                 foreach ($all_mail as $i) {
 
-                    //check if mail in bin
-                    if(Trash::isMailInTrash($i->id,$current_user_id)=== 1){
+                    //get user send id
+                    $user_sent = User::getUserById($i->user_sent);
+
+                    //check if exist mail in block user 
+                    if(BlockUser::isBlockUser($current_user_id,$user_sent->id)=== 1){
                         continue;
                     }
+
+                    //check if mail in bin
+                    if (Trash::isMailInTrash($i->id, $current_user_id) === 1) {
+                        continue;
+                    }
+
                     // display user sent
-                    $user_sent = User::getUserById($i->user_sent);
                     if (is_null($user_sent->avatar) || $user_sent->avatar === '') {
                         $user_sent_avatar = 'asset/images/avatar/1.png';
                     } else {
@@ -57,8 +72,8 @@ $all_mail = Mail::getInboxMail($current_user_id);
                 ?>
                     <tr class='<?= $style_read ?>'>
                         <td class='col-1 mail-user' style="padding: 5px 0px 5px 30px">
-                            <img src="asset/images/icons/<?= $star ?>.png" onclick="onClickStarButton(<?= $id ?>)" class='img-fluid star-button icon mr-2 star_icon' alt="">
-                            <img src="asset/images/icons/bin.png" onclick="onClickDeleteButton(<?= $id ?>)" class='delete_icon img-fluid icon mr-2' alt="">
+                            <img src="asset/images/icons/<?= $star ?>.png" onclick="onClickStarButton(<?= $id ?>,'<?= $current_controller ?>', '<?= $current_action ?>')" class='img-fluid star-button icon mr-2 star_icon' alt="">
+                            <img src="asset/images/icons/bin.png" onclick="onClickDeleteButton(<?= $id ?>,'<?= $current_controller ?>', '<?= $current_action ?>')" class='delete_icon img-fluid icon mr-2' alt="">
                         </td>
                         <td class='col-3 mail-user' onclick="viewDetailMail(<?= $id ?>)">
                             <img src='<?= $user_sent_avatar ?>' alt='avatar' class='img-fluid mail-avatar' />

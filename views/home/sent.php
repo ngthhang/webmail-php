@@ -1,6 +1,8 @@
 <?php
 $header = 'Sent Mail';
 $all_mail = Mail::getSentMail($current_user_id);
+$current_controller = $_GET['controller'];
+$current_action = $_GET['action'];
 ?>
 <div class='col-xl-10 col-md-8 col-lg-8 p-0'>
     <form action="index.php" method="GET" name="viewDetail">
@@ -20,6 +22,11 @@ $all_mail = Mail::getSentMail($current_user_id);
             <tbody>
                 <?php
                 foreach ($all_mail as $i) {
+
+                    //check if mail in bin
+                    if (Trash::isMailInTrash($i->id, $current_user_id) === 1) {
+                        continue;
+                    }
 
                     // display user receive
                     $user_receive = User::getUserById($i->user_receive);
@@ -43,12 +50,12 @@ $all_mail = Mail::getSentMail($current_user_id);
                         $star = 'star_outline';
                     }
                 ?>
-                    <tr class='d-flex mail' onclick="viewDetailMail(<?= $id ?>)">
+                    <tr class='d-flex mail'>
                         <td class='col-1 mail-user' style="padding: 5px 0px 5px 30px">
-                            <img src="asset/images/icons/<?= $star ?>.png" class='img-fluid icon mr-2 star_icon' alt="">
-                            <img src="asset/images/icons/bin.png" class='delete_icon img-fluid icon mr-2' alt="">
+                            <img src="asset/images/icons/<?= $star ?>.png" onclick="onClickStarButton(<?= $id ?>,'<?= $current_controller ?>','<?= $current_action ?>')" class='img-fluid icon mr-2 star_icon' alt="">
+                            <img src="asset/images/icons/bin.png" onclick="onClickDeleteButton(<?= $id ?>,'<?= $current_controller ?>','<?= $current_action ?>')" class='delete_icon img-fluid icon mr-2' alt="">
                         </td>
-                        <td class='col-3 mail-user'>
+                        <td class='col-3 mail-user' onclick="viewDetailMail(<?= $id ?>)">
                             <span>Sent: </span>
                             <img src='<?= $user_receive_avatar ?>' alt='avatar' class='img-fluid mail-avatar' />
                             <p class='ml-2'><?= $user_receive_name ?></p>

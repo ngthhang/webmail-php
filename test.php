@@ -4,9 +4,13 @@
     require_once('models/Spam.php');
     require_once('models/Star.php');
     require_once('models/Conversation.php');
+    require_once('models/BlockUser.php');
 
-    date_default_timezone_set('Etc/GMT-7');
-    $sent_time = date('Y-m-d h:i:s', time());
+    $user = BlockUser::getAll(21);
 
-    echo ;
+    if(is_null($user)){
+        echo 'hiii';
+    }
+    print_r($user);
+
 ?>

@@ -4,6 +4,8 @@
     } else {
         $id_mail = $_GET['id_mail'];
         $user_id = $current_user_id;
+        $prev_controller = $_GET['prev_c'];
+        $prev_action = $_GET['prev_a'];
         if(Star::isMailStar($id_mail,$user_id)){
             $result = Star::deleteStarMail($id_mail, $user_id);
         } else{
@@ -15,6 +17,5 @@
             echo "<script>alert('There is some error in updating,please try again!')</script>";
         }
     }
-
-    redirect('index.php');
+    redirect('index.php?controller=' . $prev_controller .'&action=' . $prev_action);
 ?>

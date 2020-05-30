@@ -1,5 +1,7 @@
 <?php
 $previous_action = $_GET['previous_route'];
+$current_controller = $_GET['controller'];
+$current_action = $_GET['action'];
 if (!isset($_GET['id_mail'])) {
     echo "<script>alert('Mail id is not exist!')</script>";
     redirect('index.php');
@@ -22,6 +24,16 @@ if (!isset($_GET['id_mail'])) {
         $user_sent_avatar = 'asset/images/avatar/1.png';
     } else {
         $user_sent_avatar = $user_sent->avatar;
+    }
+
+    //check if mail is important
+    $is_star = Star::isMailStar($id_mail, $current_user_id);
+    if ($is_star === 1) {
+        $star_text = 'Clear starred';
+        $star_icon = 'star';
+    } else {
+        $star_text = 'Clear starred';
+        $star_icon = 'star_outline';
     }
 }
 ?>
@@ -55,9 +67,9 @@ if (!isset($_GET['id_mail'])) {
                                     <img src="asset/images/icons/bin.png" class='img-fluid icon mr-2' alt="">
                                     <p class='label-text'>Delete</p>
                                 </td>
-                                <td class='table-body d-flex flex-row p-2 mr-4 text-center'>
-                                    <img src="asset/images/icons/star_outline.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Set star</p>
+                                <td class='table-body d-flex flex-row p-2 mr-4 text-center' onclick="updateStarInMailDetail(<?= $id_mail ?>,'<?= $current_controller ?>', '<?= $current_action ?>','<?= $previous_action ?>')">
+                                    <img src="asset/images/icons/<?= $star_icon ?>.png" class='img-fluid icon mr-2' alt="">
+                                    <p class='label-text'><?= $star_text ?></p>
                                 </td>
                                 <td class='table-body'>
                                     <img src="asset/images/icons/more.png" class='img-fluid dropdown-toggle text-center icon mr-2' alt="" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

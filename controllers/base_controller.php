@@ -7,6 +7,7 @@ require_once('models/Spam.php');
 require_once('models/Star.php');
 require_once('models/Draft.php');
 require_once('models/Trash.php');
+require_once('models/BlockUser.php');
 class BaseController
 {
     protected $name;

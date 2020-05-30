@@ -60,13 +60,18 @@ function onClickBackButton(previousRoute){
 
 
 //on star email
-function onClickStarButton(id) {
-    window.location.href = `index.php?controller=mail&action=starred&id_mail=${id}`;
+function onClickStarButton(id, prev_controller, prev_action) {
+    window.location.href = `index.php?controller=mail&action=starred&id_mail=${id}&prev_c=${prev_controller}&prev_a=${prev_action}`;
     return
 }
 
-//on delete mail 
-function onClickDeleteButton(id){
-    window.location.href = `index.php?controller=mail&action=delete&id_mail=${id}`;
+//on delete mail to mail bin
+function onClickDeleteButton(id, prev_controller, prev_action){
+    window.location.href = `index.php?controller=mail&action=delete&id_mail=${id}&prev_c=${prev_controller}&prev_a=${prev_action}`;
     return 
+}
+
+//on update star in mail detail
+function updateStarInMailDetail(){
+    
 }
