@@ -3,18 +3,33 @@ function onSubmitMail(id){
     let to = $("#to").val();
     let subject = $("#subject").val();
     let content = $("#content_mail").val();
-    console.log(to);
-    console.log(subject);
-    console.log(content);
-    if(id==='discard')
+
+    if(to[to.length-1]===','){
+        to = to.substr(0,to.length-1);
+    }
+
+    if(id === 'draft'){
+        $('#check_save_draft').val('true');
+        document.composeSubmit.submit();
+    }
+    else if(id==='discard')
     {
-        
+        $("#to").val(null);
+        $("#subject").val(null);
+        $("#content_mail").val(null);
+
     } else{
+        split_to = to.split(',');
+        if (split_to.length > 1){
+            for(let i = 0; i<split_to.length ; i++){
+                if(!split_to[i].includes('@gmail.com')){
+                    alert('User receive email ' + split_to[i] + ' is invalid');
+                    return;
+                }
+            }
+        }
         if(to === '' || to === null){
             alert('User receive cant be null');
-        }
-        else if(!to.includes('@gmail.com')) {
-            alert('User receive email is invalid');
         }
         else if( subject === '' || subject === null){
             alert('Subject cant be null');
@@ -74,4 +89,28 @@ function onClickDeleteButton(id, prev_controller, prev_action){
 //on update star in mail detail
 function updateStarInMailDetail(){
     
+}
+
+
+//on change input to from compose file 
+function onChangeToInput(){
+    let to = $('#to').val();
+    if(to.includes(' ')){
+        to = to.replace(' ','');
+        $('#to').val(to);
+    }
+}
+
+//on key press
+function onCheckKeyPress(event){
+    let to = $('#to').val();
+    if (event.keyCode === 32 && to.slice(-1) !== ',' && to.slice(-1) !== ''){
+        to = to + ',';
+        $('#to').val(to);
+    }
+}
+
+//on change subject in draft mail 
+function onChangeSubject(){
+    $("#change_subject").val("true");
 }

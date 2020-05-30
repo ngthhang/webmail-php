@@ -6,6 +6,7 @@ function onRoute(id){
     else if(id=== 'compose'){
         $('#controller').val('mail');
         $('#action').val('compose');
+        
     }
     else{
         $('#controller').val('home');

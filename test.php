@@ -4,13 +4,12 @@
     require_once('models/Spam.php');
     require_once('models/Star.php');
     require_once('models/Conversation.php');
-    require_once('models/BlockUser.php');
-
-    $user = BlockUser::getAll(21);
-
-    if(is_null($user)){
-        echo 'hiii';
+    require_once('models/User.php');
+    //compose new mail
+    $ch = 'dd';
+    if($ch === 'dd')
+    {
+        echo '111';
     }
-    print_r($user);
-
+    
 ?>

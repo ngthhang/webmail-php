@@ -33,7 +33,7 @@ require_once('config/config.php');
     <div class='container-fluid p-0'>
         <div class='row h-100 w-100 m-0'>
             <!-- START MENU SIDE BAR -->
-            <div class='col-xl-2 d-none d-md-block col-md-4 col-lg-4 p-0 h-100 sticky-top'>
+            <div class='col-xl-2 d-none d-md-block col-md-2 col-lg-2 p-0 h-100 sticky-top'>
                 <!-- MENU SETTING WEBMAIL -->
                 <form method="get" name="menuSide" action="index.php">
                     <input type="text" name="controller" value="" id='controller' style="display: none">

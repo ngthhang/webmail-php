@@ -41,5 +41,15 @@
             $stm->close();
             return null;
         }
+
+        public static function addMailDraft($id,$user_id){
+            $sql = "INSERT INTO DRAFT VALUES(?,?)";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii',$id,$user_id);
+            $status = $stm->execute();
+            $stm->close();
+            return $status;
+        }
     }
 ?>
