@@ -14,4 +14,8 @@
         function logout(){
             $this->render('logout',array());
         }
+
+        function login_admin(){
+            $this->render('login_admin',array());
+        }
     }

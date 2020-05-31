@@ -8,7 +8,7 @@ if (!isset($_GET['id_mail'])) {
 } else {
     //get mail content
     $id_mail = $_GET['id_mail'];
-    Mail::updateSeenMail($id_mail);
+    Mail::updateSeenMail($id_mail,$current_user_id);
     $mail = Mail::getMailById($id_mail);
     $conversation = Conversation::getConversation($mail->conversation_id);
     $subject = $conversation->subject;

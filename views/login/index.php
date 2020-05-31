@@ -64,7 +64,7 @@ if (isset($_POST['login'])) {
               </div>
             </div>
           </div>
-          <a href="" class=''>Forgot Password?</a>
+          <a href="index.php?controller=login&action=login_admin" class=''>Signin as admin</a>
           <a href="index.php?controller=login&action=logup" class='mb-3'>Not have account? Signup</a>
           <div>
             <p class='mb-3 error-text' id='error-message'></p>

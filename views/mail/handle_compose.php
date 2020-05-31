@@ -46,7 +46,6 @@ if (isset($_POST['to']) && $_POST['check_save_draft'] !== 'true'){
     $conversation_id = $_POST['conversation_id'];
     $subject = $_POST['subject'];
     $content = $_POST['content_mail'];
-    $enclosed = null;
     $to = $_POST['to'];
     $all_to = explode(',', $to);
     $total_receive = count($all_to);
@@ -71,15 +70,15 @@ if (isset($_POST['to']) && $_POST['check_save_draft'] !== 'true'){
             $user_receive = User::getCurrentUser($all_to[$i]);
             $user_receive_id = $user_receive->id;
             if (is_null($conversation_id) || $conversation_id === '') {
-                Mail::addMail($new_conversation_id,$current_user_id, $user_receive_id, $subject, $content, $enclosed); 
+                Mail::addMail($new_conversation_id,$current_user_id, $user_receive_id, $content); 
             } 
             if(!isset($_GET['reply']) && !isset($_GET['forward'])){
-                Mail::sendDraftMail($conversation_id,$current_user_id,$user_receive_id,$subject,$enclosed);
+                Mail::sendDraftMail($conversation_id,$current_user_id,$user_receive_id,$content);
                 $id = Mail::getSize();
                 Draft::deleteDraftMail($id);
             }
             else{
-                Mail::addMail($conversation_id, $current_user_id, $user_receive_id, $subject, $content, $enclosed); 
+                Mail::addMail($conversation_id, $current_user_id, $user_receive_id, $content); 
             }
 
             $id = Mail::getSize();
@@ -104,7 +103,6 @@ if (isset($_POST['check_save_draft'])) {
         $to = $_POST['to'] === '' ? null : $_POST['to'];
         $subject = $_POST['subject'] === '' ? null : $_POST['subject'];
         $content = $_POST['content_mail'] === '' ? null : $_POST['content_mail'];
-        $enclosed = null;
 
         if(is_null($conversation_id) || $conversation_id == ''){
             $conversation_id = Conversation::getSize() + 1;
@@ -128,13 +126,13 @@ if (isset($_POST['check_save_draft'])) {
                 } else {
                     $user_receive = User::getCurrentUser($all_to[$i]);
                     $user_receive_id = $user_receive->id;
-                    Mail::addMail($conversation_id, $current_user_id, $user_receive_id, $subject, $content, $enclosed);
+                    Mail::addMail($conversation_id, $current_user_id, $user_receive_id, $content);
                     $id = Mail::getSize();
                     Draft::addMailDraft($id, $current_user_id);
                 }
             }
         } else {
-            Mail::addMail(intval($conversation_id), $current_user_id, null, $subject, $content, $enclosed);    
+            Mail::addMail(intval($conversation_id), $current_user_id, null, $content);    
             $id = Mail::getSize();
             Draft::addMailDraft($id,$current_user_id);
         }
