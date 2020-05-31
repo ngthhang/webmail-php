@@ -8,9 +8,8 @@
 //compose new mail
 
 //  echo Conversation::getSize() + 1;
- if(!is_null('77')){
-     echo 'jo';
- } else{
-     echo 'hdd';
- }
+$usermail = 'ngthhang9102000@gmail.com';
+if (User::checkBlockUser($usermail)) {
+    echo 'hi';
+}
 ?>

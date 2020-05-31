@@ -133,5 +133,21 @@ require_once('config/config.php');
             $stm->close();
             return $result;
         }
+
+        public static function checkBlockUser($mail){
+            $check_user = 'SELECT * FROM USER WHERE USER_MAIL_ADDRESS = ? AND BLOCK = ?';
+            $db = DB::getDB();
+            $stm = $db->prepare($check_user);
+            $block = 1;
+            $stm->bind_param('si', $mail,$block);
+            $status = $stm->execute();
+
+            if ($status) {
+                $data = $stm->get_result();
+                return $data->num_rows;
+            }
+            $stm->close();
+            return null;
+        }
     }
 ?>

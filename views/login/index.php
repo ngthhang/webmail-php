@@ -25,9 +25,11 @@ if (isset($_POST['login'])) {
   $usermail = addslashes($_POST['email']);
   $password = addslashes(md5($_POST['pwd']));
 
-  if (User::checkUserExist($usermail)) {
+  if (User::checkBlockUser($usermail)){
+    echo "<script>alert('This Email blocked by admin')</script>";
+  }
+  else if (User::checkUserExist($usermail)) {
     if (User::checkLogin($usermail, $password)) {
-      echo "<script>alert('Log in successfully!')</script>";
       $_SESSION['email'] = $usermail;
       redirect('index.php');
     } else {

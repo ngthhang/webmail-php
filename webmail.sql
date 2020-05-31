@@ -44,10 +44,10 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ID`, `NAME`, `AVATAR`, `POSITION`, `SYSADMIN`, `PHONENUMBER`, `USER_MAIL_ADDRESS`, `PASSWORD`) VALUES
-(1, 'Nguyễn Ánh', 'asset/images/avatar/users-3.svg', 'Mail Transfer Agent', b'1', '0908089818', 'anhnguyen_admin@gmail.com', '2a9e2c46e1c779e312eb4d12023ed687'),
+(1, 'Nguyễn Ánh', 'asset/images/avatar/users-3.svg', 'Mail Transfer Agent', b'1', '0908089818', 'anhnguyen_admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e'),
 (2, 'Trần Đức Anh', 'asset/images/avatar/users-4.svg', 'Customer Service Representative', b'0', '0988515978', 'anhtran_admin@gmail.com', 'bbc68add6ded93a824a3c66f01a7d833'),
-(3, 'Đoàn Quốc Trung', 'asset/images/avatar/users-10.svg', 'Mail User Agent', b'1', '0354726845', 'trungdoan_admin@gmail.com', '6564fbe5804760bbb80db1cbf90b3c70'),
-(4, 'Nguyễn Ái Nghĩa', 'asset/images/avatar/users-2.svg', 'Mail Transfer Agent', b'1', '0908087818', 'nghianguyen_admin@gmail.com', '8b2ceee296e7afa74e0959907095cb28');
+(3, 'Đoàn Quốc Trung', 'asset/images/avatar/users-10.svg', 'Mail User Agent', b'0', '0354726845', 'trungdoan_admin@gmail.com', '6564fbe5804760bbb80db1cbf90b3c70'),
+(4, 'Nguyễn Ái Nghĩa', 'asset/images/avatar/users-2.svg', 'Mail Transfer Agent', b'0', '0908087818', 'nghianguyen_admin@gmail.com', '8b2ceee296e7afa74e0959907095cb28');
 
 -- --------------------------------------------------------
 
