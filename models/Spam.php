@@ -37,5 +37,29 @@
             $stm->execute();
             return $result;
         }
+
+        public static function isSpamMail($id,$user_id){
+            $sql = "SELECT * FROM SPAM WHERE ID = ? AND USER_ID = ?";
+            $db = DB::getDB();
+            $stm= $db->prepare($sql);
+            $stm->bind_param('ii',$id,$user_id);
+            $status = $stm->execute();
+            if ($status) {
+                $data = $stm->get_result();
+                return $data->num_rows;
+            }
+            $stm->close();
+            return null;
+        }
+
+        public static function deleteSpamMail($id,$user_id){
+            $sql = "DELETE FROM SPAM WHERE ID = ? AND USER_ID = ?";
+            $db = DB::getDB();
+            $stm= $db->prepare($sql);
+            $stm->bind_param('ii',$id,$user_id);
+            $status = $stm->execute();
+            $stm->close();
+            return $status;
+        }
     }
 ?>

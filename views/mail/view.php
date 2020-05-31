@@ -32,71 +32,29 @@ if (!isset($_GET['id_mail'])) {
         $star_text = 'Clear starred';
         $star_icon = 'star';
     } else {
-        $star_text = 'Clear starred';
+        $star_text = 'Set star';
         $star_icon = 'star_outline';
+    }
+
+    //check if mail is in spam 
+    $is_spam = Spam::isSpamMail($id_mail, $current_user_id);
+    if ($is_spam === 1) {
+        $spam_text = 'Move to Inbox';
+        $spam_icon = 'inbox';
+    } else {
+        $spam_text = 'Move to Junk';
+        $spam_icon = 'spam';
     }
 }
 ?>
 <div class='col-xl-10 col-md-8 col-lg-8 p-0'>
-    <form action="index.php" method="GET" name="mailDetail">
+    <form action="" method="GET" name="mailDetail">
         <input type="text" name="controller" value="" id='controller_detail' style="display: none">
         <input type="text" name="action" value="" id='action_detail' style="display: none">
         <table class='table table-borderless'>
-            <thead>
-                <tr class='table-mail-header sticky-top bg-white'>
-                    <td onclick="onClickBackButton(<?= $previous_action ?>)" class='table-body ml-3'>
-                        <img src="asset/images/icons/back.png" class='img-fluid icon' alt="">
-                    </td>
-                    <td>
-                        <!--more button -->
-                        <table class='table table-borderless'>
-                            <tr class='row'>
-                                <td class='table-body d-flex flex-row p-2 mr-4 text-center'>
-                                    <img src="asset/images/icons/reload.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Reply</p>
-                                </td>
-                                <td class='table-body d-flex flex-row p-2 mr-4 text-center'>
-                                    <img src="asset/images/icons/reply-all.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Reply All</p>
-                                </td>
-                                <td class='table-body d-flex flex-row p-2 mr-4 text-center'>
-                                    <img src="asset/images/icons/arrow.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Forward</p>
-                                </td>
-                                <td class='table-body d-flex flex-row p-2 mr-4 text-center'>
-                                    <img src="asset/images/icons/bin.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Delete</p>
-                                </td>
-                                <td class='table-body d-flex flex-row p-2 mr-4 text-center' onclick="updateStarInMailDetail(<?= $id_mail ?>,'<?= $current_controller ?>', '<?= $current_action ?>','<?= $previous_action ?>')">
-                                    <img src="asset/images/icons/<?= $star_icon ?>.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'><?= $star_text ?></p>
-                                </td>
-                                <td class='table-body'>
-                                    <img src="asset/images/icons/more.png" class='img-fluid dropdown-toggle text-center icon mr-2' alt="" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <button class="dropdown-item d-flex flex-row p-2" type="button">
-                                            <img src="asset/images/icons/unread.png" class='img-fluid icon mr-2' alt="">
-                                            <p>Mark as read</p>
-                                        </button>
-                                        <button class="dropdown-item d-flex flex-row p-2" type="button">
-                                            <img src="asset/images/icons/spam.png" class='img-fluid icon mr-2' alt="">
-                                            <p>Move to Junk</p>
-                                        </button>
-                                        <button class="dropdown-item d-flex flex-row p-2" type="button">
-                                            <img src="asset/images/icons/back.png" class='img-fluid icon mr-2' alt="">
-                                            <p>Previous</p>
-                                        </button>
-                                        <button class="dropdown-item d-flex flex-row p-2" type="button">
-                                            <img src="asset/images/icons/next.png" class='img-fluid icon mr-2' alt="">
-                                            <p>Next</p>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </thead>
+            <?php
+                require_once('view_header.php');
+            ?>
             <tbody>
                 <tr class='no-border'>
                     <td colspan="3" class='font-weight-bold' style="padding: 3px 0px 3px 30px">

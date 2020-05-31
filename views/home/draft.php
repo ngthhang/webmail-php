@@ -34,9 +34,9 @@ $all_draft = Draft::getAllDraftByUserId($current_user_id);
                     // display content
                     $conversation_id = $mail->conversation_id;
                     $mail_conversation = Conversation::getConversation($mail->conversation_id);
-                    if(is_null($mail_conversation)){
+                    if (is_null($mail_conversation)) {
                         $subject = '(no subject)';
-                    } else{
+                    } else {
                         $subject = $mail_conversation->subject;
                     }
                     if (is_null($subject)) {
@@ -66,7 +66,7 @@ $all_draft = Draft::getAllDraftByUserId($current_user_id);
                         <td class='col-3 mail-user' onclick="composeMail(<?= $conversation_id ?>)">
                             <p class='<?= $style_text_read ?>' style="margin-left: 0.5rem ; color: red">Draft</p>
                         </td>
-                        <td class='col-8 mail-content'>
+                        <td class='col-8 mail-content' onclick="composeMail(<?= $conversation_id ?>)">
                             <span class='<?= $style_text_read ?>'><?= $subject ?></span>
                             <span class='mail-content-text'><?= $date ?></span>
                         </td>

@@ -137,6 +137,17 @@
             return $status;
         }
 
+        public static function updateUnseenMail($id){
+            $sql = "UPDATE MAIL SET SEEN = ? WHERE ID = ?";
+            $db = DB::getDB();
+            $seen = 0;
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii', $seen, $id);
+            $status = $stm->execute();
+            $stm->close();
+            return $status;
+        }
+
         public static function addMail($conversation_id,$user_sent,$user_receive,$subject,$content,$enclosed){
             $sql = "INSERT INTO MAIL VALUES(?,?,?,?,?,?,?,?)";
             $db = DB::getDB();

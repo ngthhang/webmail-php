@@ -6,7 +6,7 @@
     }
     $support_controller = array(
         'home' => array('index' ,'error','draft','star','spam', 'trash', 'sent'),
-        'mail'=>array('view','compose','reply','forward', 'starred','delete'),
+        'mail'=>array('view','compose','reply','forward', 'starred','delete','add_spam','unread'),
         'login' => array('index','logup', 'logout')
     );
 

@@ -60,7 +60,7 @@ $current_action = $_GET['action'];
                             <img src='<?= $user_receive_avatar ?>' alt='avatar' class='img-fluid mail-avatar' />
                             <p class='ml-2'><?= $user_receive_name ?></p>
                         </td>
-                        <td class='col-8 mail-content'>
+                        <td class='col-8 mail-content' onclick="viewDetailMail(<?= $id ?>)">
                             <span><?= $subject ?></span>
                             <span class='mail-content-text'><?= $date ?></span>
                         </td>

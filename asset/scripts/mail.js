@@ -69,13 +69,12 @@ function composeMail(id){
 
 //routing back home page
 function onClickBackButton(previousRoute){
-    $('#controller_detail').val('home');
-    $('#action_detail').val(previousRoute.id);
-    document.mailDetail.submit();
+    window.location.href = `index.php?controller=home&action=${previousRoute.id}`;
+    return 
 }
 
 
-//on star email
+//on star email in list mail
 function onClickStarButton(id, prev_controller, prev_action) {
     window.location.href = `index.php?controller=mail&action=starred&id_mail=${id}&prev_c=${prev_controller}&prev_a=${prev_action}`;
     return
@@ -88,10 +87,23 @@ function onClickDeleteButton(id, prev_controller, prev_action){
 }
 
 //on update star in mail detail
-function updateStarInMailDetail(){
-    
+function updateStarInMailDetail(id,curr_controller,curr_action,prev_action){
+    window.location.href = `index.php?controller=mail&action=starred&id_mail=${id}&curr_c=${curr_controller}&curr_a=${curr_action}&prev_a=${prev_action}`;
+    return 
 }
 
+//on add spam mail
+function moveMailToSpam(id,curr_controller,curr_action,prev_action){
+    window.location.href = `index.php?controller=mail&action=add_spam&id_mail=${id}&curr_c=${curr_controller}&curr_a=${curr_action}&prev_a=${prev_action}`;
+    return 
+}
+
+
+//change unread mail
+function changeUnreadMail(id,prev_controller,prev_action){
+    window.location.href = `index.php?controller=mail&action=unread&id_mail=${id}&prev_c=${prev_controller}&prev_a=${prev_action}`;
+    return 
+}
 
 //on change input to from compose file 
 function onChangeToInput(){

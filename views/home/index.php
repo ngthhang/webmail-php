@@ -1,7 +1,7 @@
 <?php
 $header = 'Inbox';
 $all_mail = Mail::getInboxMail($current_user_id);
-if(!isset($_GET['controller'])){
+if (!isset($_GET['controller'])) {
     $current_action = 'index';
     $current_controller = 'home';
 } else {
@@ -32,7 +32,7 @@ if(!isset($_GET['controller'])){
                     $user_sent = User::getUserById($i->user_sent);
 
                     //check if exist mail in block user 
-                    if(BlockUser::isBlockUser($current_user_id,$user_sent->id)=== 1){
+                    if (BlockUser::isBlockUser($current_user_id, $user_sent->id) === 1) {
                         continue;
                     }
 
@@ -79,7 +79,7 @@ if(!isset($_GET['controller'])){
                             <img src='<?= $user_sent_avatar ?>' alt='avatar' class='img-fluid mail-avatar' />
                             <p class='<?= $style_text_read ?>' style="margin-left: 0.5rem ;"><?= $user_sent_name ?></p>
                         </td>
-                        <td class='col-8 mail-content'>
+                        <td class='col-8 mail-content' onclick="viewDetailMail(<?= $id ?>)">
                             <span class='<?= $style_text_read ?>'><?= $subject ?></span>
                             <span class='mail-content-text'><?= $date ?></span>
                         </td>

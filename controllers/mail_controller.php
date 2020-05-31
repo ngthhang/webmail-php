@@ -38,5 +38,13 @@
         {
             $this->render('delete', array());
         }
+
+        function add_spam(){
+            $this->render('add_spam', array());
+        }
+
+        function unread(){
+            $this->render('unread', array());
+        }
     }
 ?>
