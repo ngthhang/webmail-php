@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 30, 2020 lúc 04:04 PM
+-- Thời gian đã tạo: Th5 31, 2020 lúc 03:04 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.3
 
@@ -237,32 +237,33 @@ CREATE TABLE `user` (
   `AVATAR` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PHONENUMBER` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `USER_MAIL_ADDRESS` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `PASSWORD` varchar(500) COLLATE utf8_unicode_ci NOT NULL
+  `PASSWORD` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `BLOCK` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`ID`, `NAME`, `AVATAR`, `PHONENUMBER`, `USER_MAIL_ADDRESS`, `PASSWORD`) VALUES
-(1, 'Nguyễn Thúy Hằng', 'asset/images/avatar/users-16.svg', '0908089819', 'ngthhang9102000@gmail.com', '9a9c78a7298a9291d61d9f78b3c0b290'),
-(2, 'Đoàn Hồng Phương Ngọc', 'asset/images/avatar/users-14.svg', '0933288236', 'doanhongphuongngoc@gmail.com', '70b1494dd92373021278682c4ab43b6c'),
-(3, 'Phạm Đức Duy', 'asset/images/avatar/users-2.svg', '0354726844', 'ptduy861@gmail.com', 'afb326ef435912992996400297fb5b46'),
-(4, 'Nguyễn Quế Chi', 'asset/images/avatar/users-12.svg', '0915648965', 'quechi2461@gmail.com', '1cf6f87dce279bdc982c6315d76cb287'),
-(5, 'Phan Hải Đăng', 'asset/images/avatar/users-15.svg', '0978645687', 'phdang3345@gmail.com', 'c96e3760a924df57306c17a022279d5f'),
-(6, 'Trần Thu Ngân', 'asset/images/avatar/users-5.svg', '0999912459', 'ttngan74466@gmail.com', 'a6b9b222b2608b3858e5c94a2d2cdbec'),
-(7, 'Tiêu Trí Kiên', 'asset/images/avatar/users-11.svg', '0988515975', 'tieuchikien1230@gmail.com', '81376b67fa44c9dd77a433b0299c827a'),
-(8, 'Trần Vũ Ngân', 'asset/images/avatar/users-3.svg', '0985678549', 'tranvungan@gmail.com', '1aeb357a508af2792b37ef8717d96bc7'),
-(9, 'Phạm Văn Lâm', 'asset/images/avatar/users-1.svg', '0975684895', 'phamvanlam@gmail.com', 'cb7ae94d9e85607ac9f5508210f17b74'),
-(10, 'Nguyễn Hùng Dũng', 'asset/images/avatar/users-4.svg', '0945698759', 'nguyenhungdung@gmail.com', '9c3b2d4d36adcf71499f0a1df90b98d9'),
-(11, 'Trần Tuấn Sang', 'asset/images/avatar/users-8.svg', '0978645415', 'trantuansang@gmail.com', 'eb1fd358cd3656440e6be7d69528ba06'),
-(12, 'Trần Bảo Long', 'asset/images/avatar/users-6.svg', '0975395186', 'tranbaolong@gmail.com', 'b1ab890c11bad9434bac7713c429785b'),
-(13, 'Nguyễn Thị Thanh Nhàn', 'asset/images/avatar/users-9.svg', '0998488899', 'ngthanhnhan@gmail.com', '1f0a6517b776338267dbfd3f83478eff'),
-(14, 'Chế Hoài Lộc', 'asset/images/avatar/users-10.svg', '094485596', 'chehoailoc@gmail.com', '621f97dc0e9022ecb2f56109fd62cbf9'),
-(15, 'Trần Trung Hiếu', 'asset/images/avatar/users-13.svg', '0955955877', 'tthieu@gmail.com', '5718955a36cf7026072be649074d9873'),
-(16, 'Nguyễn Văn Anh', NULL, '0908089833', 'ngvananh@gmail.com', '41270408db63fa433ded12a91b680069'),
-(17, 'Nguyễn Văn Bình', NULL, '0988515123', 'ngvanbinh@gmail.com', 'a086eccff30b3bd14dbc132c79e08176'),
-(18, 'Trần Cường', NULL, '0354726855', 'trancuong@gmail.com', 'de0fd71276a00a028be813d65b34da7c');
+INSERT INTO `user` (`ID`, `NAME`, `AVATAR`, `PHONENUMBER`, `USER_MAIL_ADDRESS`, `PASSWORD`, `BLOCK`) VALUES
+(1, 'Nguyễn Thúy Hằng', 'asset/images/avatar/users-16.svg', '0908089819', 'ngthhang9102000@gmail.com', '9a9c78a7298a9291d61d9f78b3c0b290', b'0'),
+(2, 'Đoàn Hồng Phương Ngọc', 'asset/images/avatar/users-14.svg', '0933288236', 'doanhongphuongngoc@gmail.com', '70b1494dd92373021278682c4ab43b6c', b'0'),
+(3, 'Phạm Đức Duy', 'asset/images/avatar/users-2.svg', '0354726844', 'ptduy861@gmail.com', 'afb326ef435912992996400297fb5b46', b'0'),
+(4, 'Nguyễn Quế Chi', 'asset/images/avatar/users-12.svg', '0915648965', 'quechi2461@gmail.com', '1cf6f87dce279bdc982c6315d76cb287', b'0'),
+(5, 'Phan Hải Đăng', 'asset/images/avatar/users-15.svg', '0978645687', 'phdang3345@gmail.com', 'c96e3760a924df57306c17a022279d5f', b'0'),
+(6, 'Trần Thu Ngân', 'asset/images/avatar/users-5.svg', '0999912459', 'ttngan74466@gmail.com', 'a6b9b222b2608b3858e5c94a2d2cdbec', b'0'),
+(7, 'Tiêu Trí Kiên', 'asset/images/avatar/users-11.svg', '0988515975', 'tieuchikien1230@gmail.com', '81376b67fa44c9dd77a433b0299c827a', b'0'),
+(8, 'Trần Vũ Ngân', 'asset/images/avatar/users-3.svg', '0985678549', 'tranvungan@gmail.com', '1aeb357a508af2792b37ef8717d96bc7', b'0'),
+(9, 'Phạm Văn Lâm', 'asset/images/avatar/users-1.svg', '0975684895', 'phamvanlam@gmail.com', 'cb7ae94d9e85607ac9f5508210f17b74', b'0'),
+(10, 'Nguyễn Hùng Dũng', 'asset/images/avatar/users-4.svg', '0945698759', 'nguyenhungdung@gmail.com', '9c3b2d4d36adcf71499f0a1df90b98d9', b'0'),
+(11, 'Trần Tuấn Sang', 'asset/images/avatar/users-8.svg', '0978645415', 'trantuansang@gmail.com', 'eb1fd358cd3656440e6be7d69528ba06', b'0'),
+(12, 'Trần Bảo Long', 'asset/images/avatar/users-6.svg', '0975395186', 'tranbaolong@gmail.com', 'b1ab890c11bad9434bac7713c429785b', b'0'),
+(13, 'Nguyễn Thị Thanh Nhàn', 'asset/images/avatar/users-9.svg', '0998488899', 'ngthanhnhan@gmail.com', '1f0a6517b776338267dbfd3f83478eff', b'0'),
+(14, 'Chế Hoài Lộc', 'asset/images/avatar/users-10.svg', '094485596', 'chehoailoc@gmail.com', '621f97dc0e9022ecb2f56109fd62cbf9', b'0'),
+(15, 'Trần Trung Hiếu', 'asset/images/avatar/users-13.svg', '0955955877', 'tthieu@gmail.com', '5718955a36cf7026072be649074d9873', b'1'),
+(16, 'Nguyễn Văn Anh', NULL, '0908089833', 'ngvananh@gmail.com', '41270408db63fa433ded12a91b680069', b'1'),
+(17, 'Nguyễn Văn Bình', NULL, '0988515123', 'ngvanbinh@gmail.com', 'a086eccff30b3bd14dbc132c79e08176', b'1'),
+(18, 'Trần Cường', NULL, '0354726855', 'trancuong@gmail.com', 'de0fd71276a00a028be813d65b34da7c', b'1');
 
 --
 -- Chỉ mục cho các bảng đã đổ
