@@ -16,9 +16,8 @@ if (!isset($_GET['id_mail'])) {
     $content = $mail->content;
     
     //display user
-    $user_receive = User::getUserById($mail->user_receive);
-    $user_receive_mail = $user_receive->mail;
     $user_sent = User::getUserById($mail->user_sent);
+    $user_sent_id = $user_sent->id;
     $name = $user_sent->name;
     if ($user_sent->avatar === '' || is_null($user_sent->avatar)) {
         $user_sent_avatar = 'asset/images/avatar/1.png';
@@ -27,7 +26,16 @@ if (!isset($_GET['id_mail'])) {
     }
 
     // get all user receive 
-    
+    $all_mail_in_conversation = Mail::getSentMaiByConversationIdAndUserSent($user_sent_id,$conversation->id);
+    $user_receive_mail = null;
+    foreach($all_mail_in_conversation as $i){
+        $user_receive = User::getUserById($i->user_receive);
+        if(is_null($user_receive_mail)){
+            $user_receive_mail = $user_receive->mail;    
+        } else{
+            $user_receive_mail = $user_receive_mail . '; ' . $user_receive->mail;
+        }
+    }
 
     //check if mail is important
     $is_star = Star::isMailStar($id_mail, $current_user_id);

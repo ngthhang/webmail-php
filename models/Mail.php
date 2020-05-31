@@ -126,6 +126,26 @@
             return null;
         }
 
+        public static function getSentMaiByConversationIdAndUserSent($user_sent,$conversation_id){
+            $sql = "SELECT ID, CONVERSATION_ID, USER_ID_SEND, USER_ID_RECEIVE, 
+                    date_format(SENT_TIME, '%d/%m/%Y %h:%i:%s') AS SENT_TIME, CONTENT, ENCLOSED_FILE, SEEN
+                    FROM MAIL WHERE CONVERSATION_ID = ? AND USER_ID_SEND = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii', $conversation_id,$user_sent);
+            $status = $stm->execute();
+            $data = array();
+            if ($status) {
+                $result = $stm->get_result();
+                while ($i = $result->fetch_array()) {
+                    $data[] = new Mail($i['ID'], $conversation_id, $i['USER_ID_SEND'], $i['USER_ID_RECEIVE'], $i['SENT_TIME'], $i['CONTENT'], $i['ENCLOSED_FILE'], $i['SEEN']);
+                }
+                return $data;
+            }
+            $stm->close();
+            return null;
+            }
+
         public static function updateSeenMail($id){
             $sql = "UPDATE MAIL SET SEEN = ? WHERE ID = ?";
             $db = DB::getDB();
@@ -214,5 +234,6 @@
             $stm->close();
             return $status;
         }
+
 }
 ?>
