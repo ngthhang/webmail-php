@@ -28,7 +28,7 @@ function changeUserData(){
         event.preventDefault();
         return false
     }
-    else if (phone == '' || phone.length < 10 || phone.length > 10 || phone[0] !== 0 ) {
+    else if (phone == '' || phone.length < 10 || phone.length > 10 || phone[0] != 0 ) {
         error_message.html('Phone is invalid, please enter again');
         error_message.show();
         event.preventDefault();

@@ -43,7 +43,7 @@ require_once('config/config.php');
                     <table class='table table-borderless'>
                         <thead>
                             <tr id='profile' onclick="onRoute(this.id)">
-                                <td class='table-home-header'>
+                                <td class='table-home-header profile-link'>
                                     <p class='font-weight-bold label-text'><?= $current_user ?></p>
                                     <img src="<?= $avatar ?>" alt='avatar' class='img-fluid avatar' />
                                 </td>

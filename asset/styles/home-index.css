@@ -29,6 +29,10 @@ table tbody {
     justify-content: space-between;
 }
 
+.profile-link{
+    cursor: pointer;
+}
+
 .table-body{
     display: flex;
     flex-direction: row;

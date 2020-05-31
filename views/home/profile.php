@@ -1,4 +1,5 @@
 <?php
+    require_once('change_profile.php');
 ?>
 
 <div class='col-xl-10 col-md-8 col-lg-8 p-0'>
@@ -20,7 +21,7 @@
             <div class='profile-info-container'>
                 <div class='profile-row'>
                     <span class='profile-input-label col-2'>Id: </span>
-                    <input type="text" class='profile-input id col-10' value="<?= $user->id ?>" disabled name="id">
+                    <input type="text" class='profile-input col-10' value="<?= $user->id ?>" name="id">
                 </div>
                 <div class='profile-row'>
                     <span class='profile-input-label col-2'>Name: </span>

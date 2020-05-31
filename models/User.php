@@ -111,5 +111,15 @@ require_once('config/config.php');
             $stm->close();
             return null;
         }
+
+        public static function changeUserInformation($id,$name,$phone,$mail,$pass){
+            $sql = "UPDATE USER SET NAME = ?, PHONENUMBER = ?,USER_MAIL_ADDRESS = ?,PASSWORD = ? WHERE ID = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ssssi',$name, $phone, $mail, $pass, $id);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
     }
 ?>
