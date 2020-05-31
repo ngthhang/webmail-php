@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 31, 2020 lúc 07:20 PM
+-- Thời gian đã tạo: Th5 31, 2020 lúc 07:27 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.3
 
@@ -21,6 +21,33 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `webmail`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `AVATAR` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `POSITION` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `SYSADMIN` bit(1) DEFAULT b'0',
+  `PHONENUMBER` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `USER_MAIL_ADDRESS` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `PASSWORD` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`ID`, `NAME`, `AVATAR`, `POSITION`, `SYSADMIN`, `PHONENUMBER`, `USER_MAIL_ADDRESS`, `PASSWORD`) VALUES
+(1, 'Nguyễn Ánh', 'asset/images/avatar/users-3.svg', 'Mail Transfer Agent', b'1', '0908089818', 'anhnguyen_admin@gmail.com', '2a9e2c46e1c779e312eb4d12023ed687'),
+(2, 'Trần Đức Anh', 'asset/images/avatar/users-4.svg', 'Customer Service Representative', b'0', '0988515978', 'anhtran_admin@gmail.com', 'bbc68add6ded93a824a3c66f01a7d833'),
+(3, 'Đoàn Quốc Trung', 'asset/images/avatar/users-10.svg', 'Mail User Agent', b'1', '0354726845', 'trungdoan_admin@gmail.com', '6564fbe5804760bbb80db1cbf90b3c70'),
+(4, 'Nguyễn Ái Nghĩa', 'asset/images/avatar/users-2.svg', 'Mail Transfer Agent', b'1', '0908087818', 'nghianguyen_admin@gmail.com', '8b2ceee296e7afa74e0959907095cb28');
 
 -- --------------------------------------------------------
 
@@ -99,6 +126,26 @@ INSERT INTO `draft` (`ID`, `USER_ID`) VALUES
 (36, 2),
 (37, 2),
 (38, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `enclosed_file`
+--
+
+CREATE TABLE `enclosed_file` (
+  `ID` int(11) NOT NULL,
+  `MAIL_ID` int(11) NOT NULL,
+  `LINK` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `enclosed_file`
+--
+
+INSERT INTO `enclosed_file` (`ID`, `MAIL_ID`, `LINK`) VALUES
+(1, 6, 'asset/uploads/HDGiaiBTToan.pdf'),
+(2, 7, 'asset/uploads/PPT_ Numerical Method- Chapter 4.pdf');
 
 -- --------------------------------------------------------
 
@@ -269,6 +316,12 @@ INSERT INTO `user` (`ID`, `NAME`, `AVATAR`, `PHONENUMBER`, `USER_MAIL_ADDRESS`, 
 --
 
 --
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Chỉ mục cho bảng `block_user`
 --
 ALTER TABLE `block_user`
@@ -287,6 +340,13 @@ ALTER TABLE `conversation`
 ALTER TABLE `draft`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_DRAFT_USER_USER_ID` (`USER_ID`);
+
+--
+-- Chỉ mục cho bảng `enclosed_file`
+--
+ALTER TABLE `enclosed_file`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_MAIL_ID` (`MAIL_ID`);
 
 --
 -- Chỉ mục cho bảng `mail`
@@ -329,10 +389,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `conversation`
 --
 ALTER TABLE `conversation`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT cho bảng `enclosed_file`
+--
+ALTER TABLE `enclosed_file`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `mail`
@@ -363,6 +435,12 @@ ALTER TABLE `block_user`
 ALTER TABLE `draft`
   ADD CONSTRAINT `FK_DRAFT_MAIL_ID` FOREIGN KEY (`ID`) REFERENCES `mail` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_DRAFT_USER_USER_ID` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `enclosed_file`
+--
+ALTER TABLE `enclosed_file`
+  ADD CONSTRAINT `FK_MAIL_ID` FOREIGN KEY (`MAIL_ID`) REFERENCES `mail` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `mail`
