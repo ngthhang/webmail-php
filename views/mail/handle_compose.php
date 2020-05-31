@@ -43,7 +43,7 @@ else {
 }
 
 //compose new mail
-if (isset($_POST['to']) && ($_POST['check_save_draft'] !== 'true')){
+if (isset($_POST['to']) && $_POST['check_save_draft'] !== 'true'){
     $conversation_id = $_POST['conversation_id'];
     $subject = $_POST['subject'];
     $content = $_POST['content_mail'];
@@ -51,6 +51,15 @@ if (isset($_POST['to']) && ($_POST['check_save_draft'] !== 'true')){
     $to = $_POST['to'];
     $all_to = explode(',', $to);
     $total_receive = count($all_to);
+
+    if(is_null($conversation_id) || $conversation_id === '') {
+        $new_conversation_id = Conversation::getSize() + 1;
+        Conversation::addConversation($new_conversation_id, $subject);
+    } else{
+        Mail::deleteAllMailByConversationId($conversation_id);
+        Conversation::changeSubject($conversation_id, $subject);
+    }
+
     for ($i = 0; $i < $total_receive; $i++) {
         if ($all_to[$i] === '') {
             continue;
@@ -59,17 +68,11 @@ if (isset($_POST['to']) && ($_POST['check_save_draft'] !== 'true')){
             echo "<script>alert('Email " . $all_to[$i] . " does not exist in database, please try again')</script>";
             continue;
         } else {
+            $user_receive = User::getCurrentUser($all_to[$i]);
+            $user_receive_id = $user_receive->id;
             if (is_null($conversation_id) || $conversation_id === '') {
-                $user_receive = User::getCurrentUser($all_to[$i]);
-                $user_receive_id = $user_receive->id;
-                $conversation_id = Conversation::getSize() + 1;
-                Conversation::addConversation($conversation_id, $subject);
-                Mail::addMail($conversation_id,$current_user_id, $user_receive_id, $subject, $content, $enclosed); 
+                Mail::addMail($new_conversation_id,$current_user_id, $user_receive_id, $subject, $content, $enclosed); 
             } else {
-                Mail::deleteAllMailByConversationId($conversation_id);
-                Conversation::changeSubject($conversation_id, $subject);
-                $user_receive = User::getCurrentUser($all_to[$i]);
-                $user_receive_id = $user_receive->id;
                 Mail::sendDraftMail($conversation_id,$current_user_id,$user_receive_id,$subject,$enclosed);
                 $id = Mail::getSize();
                 Draft::deleteDraftMail($id);
@@ -99,11 +102,10 @@ if (isset($_POST['check_save_draft'])) {
             $conversation_id = Conversation::getSize() + 1;
             Conversation::addConversation($conversation_id, $subject);
         } else{
-            $all_mail = Mail::getAllMailByConversationId($conversation_id);
             Mail::deleteAllMailByConversationId($conversation_id);
         }
 
-        if (!is_null($to) || $to=='') {
+        if (!is_null($to)) {
             $all_to = explode(',', $to);
             $total_receive = count($all_to);
             for ($i = 0; $i < $total_receive; $i++) {

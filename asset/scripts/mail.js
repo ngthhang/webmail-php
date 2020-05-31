@@ -7,6 +7,7 @@ function onSubmitMail(id){
     if(to[to.length-1]===','){
         to = to.substr(0,to.length-1);
     }
+    $("#to").val(to);
 
     if(id === 'draft'){
         $('#check_save_draft').val('true');

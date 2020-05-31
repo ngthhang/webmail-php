@@ -17,5 +17,16 @@
         }
     }
 
+    if($prev_action === 'draft'){
+        $mail = Mail::getMailById($id_mail);
+        $conversation_id = $mail->conversation_id;
+        Mail::deleteAllMailByConversationId($conversation_id);
+        Conversation::deleteConversation($conversation_id);
+    }
+
+    if($prev_action === 'trash'){
+        Trash::deletedMail($id_mail,$current_user_id);
+    }
+
     redirect('index.php?controller=' . $prev_controller . '&action=' . $prev_action);
 ?>
