@@ -23,9 +23,11 @@ require_once('config/config.php');
     <link rel="stylesheet" type="text/css" href="asset/styles/home-index.css">
     <link rel="stylesheet" type="text/css" href="asset/styles/login.css">
     <link rel="stylesheet" type="text/css" href="asset/styles/mail.css">
+    <link rel="stylesheet" type="text/css" href="asset/styles/profile.css">
 
     <!-- JS LINK EXTERNAL FILE-->
     <script src="asset/scripts/mail.js"></script>
+    <script src="asset/scripts/login.js"></script>
     <script src="asset/scripts/home-index.js"></script>
 </head>
 

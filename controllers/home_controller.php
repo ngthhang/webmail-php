@@ -34,4 +34,9 @@
         {
             $this->render('sent', array());
         }
+
+        function profile()
+        {
+            $this->render('profile', array());
+        }
     }
