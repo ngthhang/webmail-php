@@ -106,22 +106,41 @@
             return $result['TOTALMAIL'];
         }
 
-        public static function updateSeenMail($id){
-            $sql = "UPDATE MAIL SET SEEN = 1 WHERE ID = ?";
+        public static function getAllMailByConversationId($conversation_id){
+            $sql = "SELECT ID, CONVERSATION_ID, USER_ID_SEND, USER_ID_RECEIVE, 
+                date_format(SENT_TIME, '%d/%m/%Y %h:%i:%s') AS SENT_TIME, CONTENT, ENCLOSED_FILE, SEEN
+                FROM MAIL WHERE CONVERSATION_ID = ?";
             $db = DB::getDB();
             $stm = $db->prepare($sql);
-            $stm->bind_param('i',$id);
+            $stm->bind_param('i',$conversation_id);
+            $status = $stm->execute();
+            $data = array();
+            if ($status) {
+                $result = $stm->get_result();
+                while ($i = $result->fetch_array()) {
+                    $data[] = new Mail($i['ID'], $conversation_id,$i['USER_ID_SEND'], $i['USER_ID_RECEIVE'], $i['SENT_TIME'], $i['CONTENT'], $i['ENCLOSED_FILE'], $i['SEEN']);
+                }
+                return $data;
+            }
+            $stm->close();
+            return null;
+        }
+
+        public static function updateSeenMail($id){
+            $sql = "UPDATE MAIL SET SEEN = ? WHERE ID = ?";
+            $db = DB::getDB();
+            $seen = 1;
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii',$seen,$id);
             $status = $stm->execute();
             $stm->close();
             return $status;
         }
 
-        public static function addMail($user_sent,$user_receive,$subject,$content,$enclosed){
+        public static function addMail($conversation_id,$user_sent,$user_receive,$subject,$content,$enclosed){
             $sql = "INSERT INTO MAIL VALUES(?,?,?,?,?,?,?,?)";
             $db = DB::getDB();
             $id = Mail::getSize() + 1;
-            $conversation_id = Conversation::getSize() + 1;
-            Conversation::addConversation($conversation_id,$subject);
             date_default_timezone_set('Etc/GMT-7');
             $sent_time = date('Y-m-d h:i:s', time());
             $seen = 0;
@@ -132,51 +151,57 @@
             return $result;
         }
 
-        public static function updateDraftMailDifferentSubject($id,$conversation_id,$user_sent,$user_receive,$subject,$content,$enclosed){
+        public static function sendDraftMail($conversation_id, $user_sent, $user_receive, $content, $enclosed){
+            $sql = "INSERT INTO MAIL VALUES(?,?,?,?,?,?,?,?)";
+            $db = DB::getDB();
+            $id = Mail::getSize() + 1;
+            date_default_timezone_set('Etc/GMT-7');
+            $sent_time = date('Y-m-d h:i:s', time());
+            $seen = 0;
+            $stm = $db->prepare($sql);
+            $stm->bind_param('iiiisssi', $id, $conversation_id, $user_sent, $user_receive, $sent_time, $content, $enclosed, $seen);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }   
+
+        public static function updateDraftMail($id,$conversation_id,$user_sent,$user_receive,$subject,$content,$enclosed){
             $sql = "UPDATE MAIL SET 
                 USER_ID_SEND = ?,
                 USER_ID_RECEIVE = ?,
-                CONVERSATION_ID = ?,
-                SENT_TIME = ?,
                 CONTENT = ?,
-                ENCLOSED = ?,
+                ENCLOSED_FILE = ?,
                 SEEN = ?
                 WHERE ID = ?
             ";
             $db = DB::getDB();
-            Conversation::deleteConversation($conversation_id);
-            $conversation_id = Conversation::getSize() + 1;
-            Conversation::addConversation($conversation_id, $subject);
-            date_default_timezone_set('Etc/GMT-7');
-            $sent_time = date('Y-m-d h:i:s', time());
+            Conversation::changeSubject($conversation_id,$subject);
             $seen = 0;
             $stm = $db->prepare($sql);
-            $stm->bind_param('iiisssii', $user_sent, $user_receive,$conversation_id, $sent_time, $content, $enclosed, $seen, $id);
+            $stm->bind_param('iissii', $user_sent, $user_receive, $content, $enclosed, $seen, $id);
             $result = $stm->execute();
             $stm->close();
             return $result;
         }
 
-        public static function updateDraftSameSubject($id,$user_sent,$user_receive,$content,$enclosed){
-            $sql = "UPDATE MAIL SET 
-                        USER_ID_SEND = ?,
-                        USER_ID_RECEIVE = ?,
-                        SENT_TIME = ?,
-                        CONTENT = ?,
-                        ENCLOSED = ?,
-                        SEEN = ?
-                        WHERE ID = ?
-                    ";
+        public static function deleteAllMailByConversationId($conversation_id){
+            $sql = "DELETE FROM MAIL WHERE CONVERSATION_ID = ?";
             $db = DB::getDB();
-            date_default_timezone_set('Etc/GMT-7');
-            $sent_time = date('Y-m-d h:i:s', time());
-            $seen = 0;
             $stm = $db->prepare($sql);
-            $stm->bind_param('iisssii', $user_sent, $user_receive, $sent_time, $content, $enclosed, $seen, $id);
-            $result = $stm->execute();
+            $stm->bind_param('i',$conversation_id);
+            $status = $stm->execute();
             $stm->close();
-            return $result;
+            return $status;
+        }
+
+        public static function deleteMailById($id){
+            $sql = "DELETE FROM MAIL WHERE ID = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('i', $id);
+            $status = $stm->execute();
+            $stm->close();
+            return $status;
         }
 }
-
 ?>

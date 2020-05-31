@@ -59,7 +59,7 @@ function viewDetailMail(id){
 
 //compose draft mail
 function composeMail(id){
-    $(".id_mail").val(id);
+    $(".conv_id").val(id);
     $(".controller").val("mail");
     $(".action").val("compose");
     document.viewDetail.submit();
@@ -99,6 +99,8 @@ function onChangeToInput(){
         to = to.replace(' ','');
         $('#to').val(to);
     }
+
+    console.log($('#to').val());
 }
 
 //on key press
@@ -108,9 +110,4 @@ function onCheckKeyPress(event){
         to = to + ',';
         $('#to').val(to);
     }
-}
-
-//on change subject in draft mail 
-function onChangeSubject(){
-    $("#change_subject").val("true");
 }

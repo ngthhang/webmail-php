@@ -51,5 +51,16 @@
             $stm->close();
             return $status;
         }
+
+        public static function deleteDraftMail($id){
+            $sql = "DELETE FROM DRAFT WHERE ID =  ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('i', $id);
+            $status = $stm->execute();
+            $stm->close();
+            return $status;
+        }
     }
+
 ?>

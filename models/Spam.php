@@ -27,5 +27,15 @@
             $stm->close();
             return null;
         }
+
+        public static function addSpamMail($id,$user_id){
+            $sql = "INSERT INTO SPAM VALUES(?,?)";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii',$id,$user_id);
+            $result = $stm->execute();
+            $stm->execute();
+            return $result;
+        }
     }
 ?>

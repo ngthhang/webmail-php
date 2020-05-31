@@ -1,11 +1,9 @@
-<?php 
-    require_once('handle_compose.php');
+<?php
+require_once('handle_compose.php');
 ?>
 <div class='col-xl-10 col-md-10 col-lg-10 container'>
     <form action="" name="composeSubmit" method="POST">
         <input type="text" value="<?= $conversation_id ?>" name="conversation_id" id="conversation_id" style="display:none">
-        <input type="text" value="" name="change_subject" id="change_subject" style="display:none">
-        <input type="text" value="<?= $id_mail ?>" name="mail_compose_id" id="mail_compose_id" style="display:none">
         <input type="text" value="" name="check_save_draft" id="check_save_draft" style="display:none">
         <table class="table table-borderless m-0 sticky-top">
             <?php require_once('compose_header.php') ?>
@@ -38,12 +36,12 @@
                     <tr>
                         <td class='table-mail-input border-bottom'>
                             <label for="subject" class='mail-input-label'>Subject: </label>
-                            <input type="text" class='mail-input' id="subject" oninput="onChangeSubject()" value="<?= $subject ?>" name=" subject">
+                            <input type="text" class='mail-input' id="subject" value="<?= $subject ?>" name=" subject">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <textarea name="content_mail" class='mail-input' aria-valuetext="<?= $content ?>" id="content_mail" cols="1000" rows="100"></textarea>
+                            <textarea name="content_mail" class='mail-input' id="content_mail" cols="1000" rows="100"><?= $content ?></textarea>
                         </td>
                     </tr>
                 </table>

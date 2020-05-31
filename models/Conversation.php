@@ -41,11 +41,21 @@
             return $result;
         }
 
-        public static function deleteConversation($id){
-            $sql = 'DELETE * FROM CONVERSATION WHERE ID = ?';
+        public static function changeSubject($id,$subject){
+            $sql = "UPDATE CONVERSATION SET SUBJECT = ? WHERE ID = ?";
             $db = DB::getDB();
             $stm = $db->prepare($sql);
-            $stm->bind_param('i', $id);
+            $stm->bind_param('si', $subject, $id);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
+
+        public static function deleteConversation($id){
+            $sql = "DELETE FROM CONVERSATION WHERE ID = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('i', intval($id));
             $result = $stm->execute();
             $stm->close();
             return $result;

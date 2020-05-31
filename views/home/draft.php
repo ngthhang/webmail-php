@@ -8,7 +8,7 @@ $all_draft = Draft::getAllDraftByUserId($current_user_id);
     <form action="index.php" method="GET" name="viewDetail">
         <input type="text" value="" style="display: none;" name="controller" class="controller">
         <input type="text" value="" style="display: none;" name="action" class="action">
-        <input type="text" value="" style="display: none;" name="id_mail" class="id_mail">
+        <input type="text" value="" style="display: none;" name="conv_id" class="conv_id">
         <table class='table border-bottom'>
             <thead>
                 <tr>
@@ -32,11 +32,15 @@ $all_draft = Draft::getAllDraftByUserId($current_user_id);
                     }
 
                     // display content
-                    if (is_null($mail->conversation_id) || $mail->conversation_id === '') {
+                    $conversation_id = $mail->conversation_id;
+                    $mail_conversation = Conversation::getConversation($mail->conversation_id);
+                    if(is_null($mail_conversation)){
                         $subject = '(no subject)';
-                    } else {
-                        $mail_conversation = Conversation::getConversation($mail->conversation_id);
+                    } else{
                         $subject = $mail_conversation->subject;
+                    }
+                    if (is_null($subject)) {
+                        $subject = '(no subject)';
                     }
                     $date = $mail->sent_time;
                     $is_star_mail = Star::isMailStar($i->id, $current_user_id);
@@ -59,7 +63,7 @@ $all_draft = Draft::getAllDraftByUserId($current_user_id);
                             <img src="asset/images/icons/<?= $star ?>.png" onclick="onClickStarButton(<?= $id ?>,'<?= $current_controller ?>', '<?= $current_action ?>')" class='img-fluid icon mr-2 star_icon' alt="">
                             <img src="asset/images/icons/bin.png" onclick="onClickDeleteButton(<?= $id ?>,'<?= $current_controller ?>', '<?= $current_action ?>')" class='delete_icon img-fluid icon mr-2' alt="">
                         </td>
-                        <td class='col-3 mail-user' onclick="composeMail(<?= $id ?>)">
+                        <td class='col-3 mail-user' onclick="composeMail(<?= $conversation_id ?>)">
                             <p class='<?= $style_text_read ?>' style="margin-left: 0.5rem ; color: red">Draft</p>
                         </td>
                         <td class='col-8 mail-content'>
