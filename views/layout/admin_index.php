@@ -23,10 +23,13 @@ require_once('config/config.php');
     <link rel="stylesheet" type="text/css" href="asset/styles/home-index.css">
     <link rel="stylesheet" type="text/css" href="asset/styles/login.css">
     <link rel="stylesheet" type="text/css" href="asset/styles/mail.css">
+    <link rel="stylesheet" type="text/css" href="asset/styles/profile.css">
 
     <!-- JS LINK EXTERNAL FILE-->
     <script src="asset/scripts/mail.js"></script>
+    <script src="asset/scripts/admin.js"></script>
     <script src="asset/scripts/home-index.js"></script>
+    <script src="asset/scripts/login.js"></script>
 </head>
 
 <body>
@@ -36,61 +39,31 @@ require_once('config/config.php');
             <div class='col-xl-2 d-none d-md-block col-md-2 col-lg-2 p-0 h-100 sticky-top'>
                 <!-- MENU SETTING WEBMAIL -->
                 <form method="get" name="menuSide" action="index.php">
+                    <input type="text" id="sysadmin" value="<?= $sysadmin ?>" style="display: none;">
                     <input type="text" name="controller" value="" id='controller' style="display: none">
                     <input type="text" name="action" value="" id='action' style="display: none">
                     <table class='table table-borderless'>
                         <thead>
-                            <tr id='profile' onclick="onRoute(this.id)">
-                                <td class='table-home-header'>
+                            <tr id='profile' onclick="onRouteInModeAdmin(this.id)">
+                                <td class='table-home-header profile-link'>
                                     <p class='font-weight-bold label-text'><?= $current_user ?></p>
                                     <img src="<?= $avatar ?>" alt='avatar' class='img-fluid avatar' />
                                 </td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr id='compose' onclick="onRoute(this.id)">
+                            <tr id='index' onclick="onRouteInModeAdmin(this.id)">
                                 <td class='table-body'>
-                                    <img src="asset/images/icons/add.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Compose</p>
+                                    <img src="asset/images/icons/user.svg" class='img-fluid icon mr-2' alt="">
+                                    <p class='label-text'>User</p>
                                 </td>
                             </tr>
-                            <tr id='index' onclick="onRoute(this.id)">
+                            <tr id='admin' onclick="onRouteInModeAdmin(this.id)">
                                 <td class='d-flex flex-row justify-content-between table-body'>
                                     <div class='table-body'>
-                                        <img src="asset/images/icons/inbox.png" class='img-fluid icon mr-2' alt="">
-                                        <p class='label-text'>Inbox</p>
+                                        <img src="asset/images/icons/admin.svg" class='img-fluid icon mr-2' alt="">
+                                        <p class='label-text'>Admin</p>
                                     </div>
-                                    <span class="badge badge-primary p-2"><?= $total_unread_mail ?></span>
-                                </td>
-                            </tr>
-                            <tr id='sent' onclick="onRoute(this.id)">
-                                <td class='table-body'>
-                                    <img src="asset/images/icons/sent.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Sent</p>
-                                </td>
-                            </tr>
-                            <tr id='star' onclick="onRoute(this.id)">
-                                <td class='table-body'>
-                                    <img src="asset/images/icons/draft.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Starred</p>
-                                </td>
-                            </tr>
-                            <tr id='draft' onclick="onRoute(this.id)">
-                                <td class='table-body'>
-                                    <img src="asset/images/icons/draft.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Draft</p>
-                                </td>
-                            </tr>
-                            <tr id='spam' onclick="onRoute(this.id)">
-                                <td class='table-body'>
-                                    <img src="asset/images/icons/spam.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Spam</p>
-                                </td>
-                            </tr>
-                            <tr id='trash' onclick="onRoute(this.id)">
-                                <td class='table-body'>
-                                    <img src="asset/images/icons/bin.png" class='img-fluid icon mr-2' alt="">
-                                    <p class='label-text'>Bin</p>
                                 </td>
                             </tr>
                             <tr id='logout' onclick="onRoute(this.id)">

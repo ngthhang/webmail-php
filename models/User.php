@@ -7,14 +7,16 @@ require_once('config/config.php');
         public $phone;
         public $mail;
         public $pass;
+        public $block;
 
-        public function __construct($id, $name, $avatar, $phone, $mail, $pass){
+        public function __construct($id, $name, $avatar, $phone, $mail, $pass, $block){
             $this->id = $id;
             $this->name = $name;
             $this->avatar = $avatar;
             $this->phone = $phone;
             $this->mail = $mail;
             $this->pass = $pass;
+            $this->block = $block; 
         }
 
         public static function getAll(){
@@ -23,7 +25,7 @@ require_once('config/config.php');
             $stm = $db->query($sql);
             $data = array();
             while ($i = $stm->fetch_array()) {
-                $data[] = new User($i['ID'], $i['NAME'], $i['AVATAR'], $i['PHONENUMBER'], $i['USER_MAIL_ADDRESS'], $i['PASSWORD']);
+                $data[] = new User($i['ID'], $i['NAME'], $i['AVATAR'], $i['PHONENUMBER'], $i['USER_MAIL_ADDRESS'], $i['PASSWORD'], $i['BLOCK']);
             }
             return $data;
         }
@@ -88,7 +90,7 @@ require_once('config/config.php');
                 $data = $stm->get_result();
                 while( $i = $data->fetch_array())
                 {
-                    return new User($i['ID'], $i['NAME'], $i['AVATAR'], $i['PHONENUMBER'], $i['USER_MAIL_ADDRESS'], $i['PASSWORD']);
+                    return new User($i['ID'], $i['NAME'], $i['AVATAR'], $i['PHONENUMBER'], $i['USER_MAIL_ADDRESS'], $i['PASSWORD'], $i['BLOCK']);
                 }
             }
             $stm->close();
@@ -105,7 +107,7 @@ require_once('config/config.php');
             if ($status) {
                 $data = $stm->get_result();
                 while ($i = $data->fetch_array()) {
-                    return new User($i['ID'], $i['NAME'], $i['AVATAR'], $i['PHONENUMBER'], $i['USER_MAIL_ADDRESS'], $i['PASSWORD']);
+                    return new User($i['ID'], $i['NAME'], $i['AVATAR'], $i['PHONENUMBER'], $i['USER_MAIL_ADDRESS'], $i['PASSWORD'], $i['BLOCK']);
                 }
             }
             $stm->close();
@@ -117,6 +119,16 @@ require_once('config/config.php');
             $db = DB::getDB();
             $stm = $db->prepare($sql);
             $stm->bind_param('ssssi',$name, $phone, $mail, $pass, $id);
+            $result = $stm->execute();
+            $stm->close();
+            return $result;
+        }
+
+        public static function updateBlockUser($id,$block){
+            $sql = "UPDATE USER SET BLOCK = ? WHERE ID = ?";
+            $db = DB::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bind_param('ii', $block,$id);
             $result = $stm->execute();
             $stm->close();
             return $result;

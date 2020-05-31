@@ -20,13 +20,13 @@
 </head>
 <?php
 require_once('config/config.php');
-require_once(ROOT . '\models\User.php');
+require_once(ROOT . '\models\Admin.php');
 if (isset($_POST['login'])) {
     $usermail = addslashes($_POST['email']);
     $password = addslashes(md5($_POST['pwd']));
 
-    if (User::checkUserExist($usermail)) {
-        if (User::checkLogin($usermail, $password)) {
+    if (Admin::checkAdminExist($usermail)) {
+        if (Admin::checkLogin($usermail, $password)) {
             echo "<script>alert('Log in successfully!')</script>";
             $_SESSION['email_admin'] = $usermail;
             redirect('index.php?');

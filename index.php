@@ -6,14 +6,12 @@
     }
     $support_controller = array(
         'home' => array('index' ,'error','draft','star','spam', 'trash', 'sent','profile'),
-        'admin' => array('index','profile'),
         'mail'=>array('view','compose','reply','forward', 'starred','delete','add_spam','unread'),
         'login' => array('index','logup', 'logout','login_admin')
     );
 
     $support_controller_admin = array(
-        'admin' => array('index', 'profile', 'error'),
-        'user' => array('index','view','blocked'),
+        'admin' => array('index', 'profile', 'error','admin','view_user', 'view_admin','blocked','change_sysadmin'),
         'login' => array('index', 'logup', 'logout', 'login_admin')
     );
 
