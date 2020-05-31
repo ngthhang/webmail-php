@@ -3,6 +3,7 @@ function onSubmitMail(id){
     let to = $("#to").val();
     let subject = $("#subject").val();
     let content = $("#content_mail").val();
+    $("#forward").val("false");
 
     if(to[to.length-1]===','){
         to = to.substr(0,to.length-1);
@@ -103,6 +104,18 @@ function moveMailToSpam(id,curr_controller,curr_action,prev_action){
 function changeUnreadMail(id,prev_controller,prev_action){
     window.location.href = `index.php?controller=mail&action=unread&id_mail=${id}&prev_c=${prev_controller}&prev_a=${prev_action}`;
     return 
+}
+
+//forward mail
+function onForwardMail(id){
+    window.location.href = `index.php?controller=mail&action=compose&id_mail=${id}&forward=true`;
+    return
+}
+
+//reply mail
+function onReplyMail(id) {
+    window.location.href = `index.php?controller=mail&action=compose&id_mail=${id}&reply=true`;
+    return
 }
 
 //on change input to from compose file 

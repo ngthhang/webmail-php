@@ -7,11 +7,11 @@
             <!--more button -->
             <table class='table table-borderless'>
                 <tr class='row'>
-                    <td class='table-body d-flex flex-row p-2 mr-4 text-center'>
+                    <td class='table-body d-flex flex-row p-2 mr-4 text-center' onclick="onReplyMail(<?= $id_mail ?>)">
                         <img src="asset/images/icons/reload.png" class='img-fluid icon mr-2' alt="">
                         <p class='label-text'>Reply</p>
                     </td>
-                    <td class='table-body d-flex flex-row p-2 mr-4 text-center'>
+                    <td class='table-body d-flex flex-row p-2 mr-4 text-center' onclick="onForwardMail(<?= $id_mail ?>)">
                         <img src="asset/images/icons/arrow.png" class='img-fluid icon mr-2' alt="">
                         <p class='label-text'>Forward</p>
                     </td>

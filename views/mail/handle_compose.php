@@ -1,6 +1,11 @@
 <!-- START COMPOSE -->
 <?php
 $from = $_SESSION['email'];
+$conversation_id = null;
+$subject = null;
+$content = null;
+$user_receive_mail = null;
+$forward = null;
 
 //check if composing draft mail
 if (isset($_GET['conv_id'])) {
@@ -35,12 +40,6 @@ if (isset($_GET['conv_id'])) {
         }
     }
 } 
-else {
-    $conversation_id = null;
-    $subject = null;
-    $content = null;
-    $user_receive_mail = null;
-}
 
 //compose new mail
 if (isset($_POST['to']) && $_POST['check_save_draft'] !== 'true'){
@@ -55,7 +54,8 @@ if (isset($_POST['to']) && $_POST['check_save_draft'] !== 'true'){
     if(is_null($conversation_id) || $conversation_id === '') {
         $new_conversation_id = Conversation::getSize() + 1;
         Conversation::addConversation($new_conversation_id, $subject);
-    } else{
+    } 
+    if(!isset($_GET['reply']) && !isset($_GET['forward'])){
         Mail::deleteAllMailByConversationId($conversation_id);
         Conversation::changeSubject($conversation_id, $subject);
     }
@@ -72,11 +72,16 @@ if (isset($_POST['to']) && $_POST['check_save_draft'] !== 'true'){
             $user_receive_id = $user_receive->id;
             if (is_null($conversation_id) || $conversation_id === '') {
                 Mail::addMail($new_conversation_id,$current_user_id, $user_receive_id, $subject, $content, $enclosed); 
-            } else {
+            } 
+            if(!isset($_GET['reply']) && !isset($_GET['forward'])){
                 Mail::sendDraftMail($conversation_id,$current_user_id,$user_receive_id,$subject,$enclosed);
                 $id = Mail::getSize();
                 Draft::deleteDraftMail($id);
             }
+            else{
+                Mail::addMail($conversation_id, $current_user_id, $user_receive_id, $subject, $content, $enclosed); 
+            }
+
             $id = Mail::getSize();
             if (BlockUser::isBlockUser($user_receive_id, $current_user_id) === 1) {
                 Spam::addSpamMail($id,$user_receive_id);
@@ -86,6 +91,9 @@ if (isset($_POST['to']) && $_POST['check_save_draft'] !== 'true'){
     $subject = null;
     $content = null;
     $user_receive_mail = null;
+    if (isset($_GET['forward']) || isset($_GET['reply'])) {
+        redirect('index.php?controller=home&action=sent');
+    }
 }
 
 //save draft mail
@@ -101,8 +109,10 @@ if (isset($_POST['check_save_draft'])) {
         if(is_null($conversation_id) || $conversation_id == ''){
             $conversation_id = Conversation::getSize() + 1;
             Conversation::addConversation($conversation_id, $subject);
-        } else{
+        }
+        if (!isset($_GET['reply']) && !isset($_GET['forward'])) {
             Mail::deleteAllMailByConversationId($conversation_id);
+            Conversation::changeSubject($conversation_id, $subject);
         }
 
         if (!is_null($to)) {
@@ -132,5 +142,23 @@ if (isset($_POST['check_save_draft'])) {
         $content = null;
         $user_receive_mail = null;
     }
+
+    if(isset($_GET['forward']) || isset($_GET['reply'])){
+        redirect('index.php?controller=home&action=sent');
+    }
+}
+
+//check if forward mail
+if(isset($_GET['reply']) || isset($_GET['forward'])){
+    $id_mail = $_GET['id_mail'];
+    $mail = Mail::getMailById($id_mail);
+    $user_sent = User::getUserById($mail->user_sent);
+    $user_receive = User::getUserById($mail->user_receive);
+    $conversation = Conversation::getConversation($mail->conversation_id);
+    $conversation_id = $mail->conversation_id;
+    $type_subject = isset($_GET['forward']) ? 'FW: ' : 'Re: ';
+    $subject = $type_subject . $conversation->subject;
+    $content = $mail->content;
+    $enclosed = $mail->enclosed;
 }
 ?>

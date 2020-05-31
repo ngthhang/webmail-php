@@ -14,7 +14,7 @@ if (!isset($_GET['id_mail'])) {
     $subject = $conversation->subject;
     $sent_time = $mail->sent_time;
     $content = $mail->content;
-
+    
     //display user
     $user_receive = User::getUserById($mail->user_receive);
     $user_receive_mail = $user_receive->mail;
@@ -25,6 +25,9 @@ if (!isset($_GET['id_mail'])) {
     } else {
         $user_sent_avatar = $user_sent->avatar;
     }
+
+    // get all user receive 
+    
 
     //check if mail is important
     $is_star = Star::isMailStar($id_mail, $current_user_id);

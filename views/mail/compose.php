@@ -23,18 +23,6 @@ require_once('handle_compose.php');
                     </tr>
                     <tr>
                         <td class='table-mail-input border-bottom'>
-                            <label for="cc" class='mail-input-label'>Cc: </label>
-                            <input type="text" class='mail-input' id="cc" name="cc">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class='table-mail-input border-bottom'>
-                            <label for="bcc" class='mail-input-label'>Bcc: </label>
-                            <input type="text" class='mail-input' id="bcc" name="bcc">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class='table-mail-input border-bottom'>
                             <label for="subject" class='mail-input-label'>Subject: </label>
                             <input type="text" class='mail-input' id="subject" value="<?= $subject ?>" name=" subject">
                         </td>
