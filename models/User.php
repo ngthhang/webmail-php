@@ -68,12 +68,13 @@ require_once('config/config.php');
         }
 
         public static function addUser($name,$avatar,$phone,$mail,$pass){
-            $sql = 'INSERT INTO USER VALUES(?,?,?,?,?,?)';
+            $sql = 'INSERT INTO USER VALUES(?,?,?,?,?,?,?)';
             $db = DB::getDB();
             $total_user = User::getSize();
             $id = $total_user['TOTALUSER'] + 1;
+            $block = 0;
             $stm = $db->prepare($sql);
-            $stm->bind_param('isssss',$id,$name,$avatar,$phone,$mail,$pass);
+            $stm->bind_param('isssssi',$id,$name,$avatar,$phone,$mail,$pass,$block);
             $result = $stm->execute();
             $stm->close();
             return $result;
