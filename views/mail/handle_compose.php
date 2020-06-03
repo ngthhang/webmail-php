@@ -157,5 +157,6 @@ if(isset($_GET['reply']) || isset($_GET['forward'])){
     $type_subject = isset($_GET['forward']) ? 'FW: ' : 'Re: ';
     $subject = $type_subject . $conversation->subject;
     $content = $mail->content;
+    $enclosed = $mail->enclosed;
 }
 ?>
