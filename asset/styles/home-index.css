@@ -1,0 +1,139 @@
+/* START AVATAR ICON MENU */
+.avatar{
+    max-width: 50px;
+    max-height: 50px;
+}
+.icon{
+    max-width: 20px;
+    max-height: 20px;
+}
+.user-mail-text{
+    color: #848484;
+}
+.badge{
+    border-radius: 20px;
+    padding: 2px 10px;
+}
+/* FINISH AVATAR ICON MENU */
+
+
+/* START TABLE LIST MAIL */
+table tbody {
+    cursor: pointer;
+}
+
+.table-home-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-link{
+    cursor: pointer;
+}
+
+.table-body{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.table-body:hover{
+    background-color: #E0E0E0;
+}
+
+/* FINISH TABLE LIST MAIL */
+
+
+/* START MAIL ROW CUSTOM */
+.bg-date{
+    background-color: #E3F1FC;
+}
+
+.mail-user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.mail-avatar{
+    max-width: 40px;
+    max-height: 40px;
+}
+.mail-content-text{
+    color: #7F7F7F;
+}
+.mail{
+    background-color: #f4f7f7;
+}
+.mail:hover{
+  background-color: #D5ECF7;
+}
+.mail-unread{
+    background-color: #ffffff;
+}
+.mail-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mail-input{
+    border: 0;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+.mail-input:focus{
+    outline: none;
+}
+
+.mail-input:disabled{
+    outline: none;
+}
+
+.mail-input:active{
+    outline: none;
+}
+
+.mail-input-label{
+    margin: 0;
+    font-size: 16px;
+    color: #7F7F7F;
+}
+
+.table-mail-input{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mail-button{
+    padding: 5px 5px 5px 0px;
+    margin: 0px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.mail-button:hover{
+    background-color: #E0E0E0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: white !important;
+}
+/* FINISH MAIL ROW CUSTOM */
+
+
+/* START - BUTTON ICON ONCLICK */
+/* FINISH - BUTTON ICON ONCLICK */
